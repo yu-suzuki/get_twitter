@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_27_050904) do
+ActiveRecord::Schema.define(version: 2018_07_27_232704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,26 @@ ActiveRecord::Schema.define(version: 2018_07_27_050904) do
     t.string "filename", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "url", default: "", null: false
+    t.boolean "downloaded", default: false, null: false
+    t.string "subdir"
     t.index ["tweet_text_id"], name: "index_media_on_tweet_text_id"
+  end
+
+  create_table "recent_hash_tags", force: :cascade do |t|
+    t.bigint "hash_tag_id"
+    t.integer "count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hash_tag_id"], name: "index_recent_hash_tags_on_hash_tag_id"
+  end
+
+  create_table "recent_urls", force: :cascade do |t|
+    t.bigint "url_id"
+    t.integer "count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["url_id"], name: "index_recent_urls_on_url_id"
   end
 
   create_table "tweet_texts", force: :cascade do |t|
@@ -99,9 +118,20 @@ ActiveRecord::Schema.define(version: 2018_07_27_050904) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_mentions", force: :cascade do |t|
+    t.bigint "tweet_text_id"
+    t.bigint "tweet_user_id", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tweet_text_id"], name: "index_user_mentions_on_tweet_text_id"
+  end
+
   add_foreign_key "media", "tweet_texts"
+  add_foreign_key "recent_hash_tags", "hash_tags"
+  add_foreign_key "recent_urls", "urls"
   add_foreign_key "tweets_hash_tags", "hash_tags"
   add_foreign_key "tweets_hash_tags", "tweet_texts"
   add_foreign_key "tweets_urls", "tweet_texts"
   add_foreign_key "tweets_urls", "urls"
+  add_foreign_key "user_mentions", "tweet_texts"
 end

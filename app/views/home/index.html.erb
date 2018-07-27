@@ -1,3 +1,5 @@
+<h1>Status</h1>
+
 <%= @tweet_texts.count %> Tweets are collected<br>
 <%= @tweet_texts.where(reply_check: true).count %> Tweets have replies to get<br>
 <%= @tweet_texts.where(reply: true).count %> Tweets are replies<br>
@@ -5,9 +7,34 @@
 <%= @tweet_texts.where(deleted: true).count %> Tweets are deleted<br>
 <%= @tweet_users.count %> Users<br>
 <br>
+
+<h1># of Tweets</h1>
 <%= now = DateTime.now %>
 Now: <%= now %><br>
 <% 24.times.map.with_index do |i| %>
-  <%= i+1 %> hrs before
-  <%= @tweet_texts.where(created_at: (now - (i+1).hours)..(now - (i).hours)).count %> Tweets<br>
+  <%= i + 1 %> hrs before
+  <%= @tweet_texts.where(created_at: (now - (i + 1).hours)..(now - (i).hours)).count %> Tweets<br>
 <% end %>
+
+<br>
+
+<h1>Current Tweets</h1>
+<ul>
+  <% @tweet_texts.order(created_at: :desc).first(10).each do |t| %>
+  <li><%= t.text %></li>
+  <% end %>
+</ul>
+
+<h1>Current HashTags</h1>
+<ol>
+  <% @hash_tags.order(count: :desc).first(30).each do |h| %>
+  <li><%= h.hash_tag.tag %></li>
+  <% end %>
+</ol>
+
+<h1>Current URLs</h1>
+<ol>
+  <% @urls.order(count: :desc).first(30).each do |h| %>
+    <li><%= link_to h.url.url, h.url.url %></li>
+  <% end %>
+</ol>

@@ -34,6 +34,48 @@ module GetTweet::Tweet
     end
   end
 
+  def ranking
+    loop do
+      ActiveRecord::Base.transaction do
+        now = DateTime.now
+        hashtags = Array.new
+        urls = Array.new
+        TweetText.where(created_at: now - 1.hour..now).includes(:tweets_hash_tags, :hash_tags, :tweets_urls, :urls).each do |t|
+          t.hash_tags.each do |h|
+            hashtags << h
+          end
+          t.urls.each do |u|
+            urls << u
+          end
+        end
+
+        hashtags.group_by(&:itself).map {|k, v| [k, v.size]}.sort_by {|k, v| -v}.to_h.each do |k, v|
+          RecentHashTag.create(hash_tag: k, count: v, created_at: now)
+        end
+        urls.group_by(&:itself).map {|k, v| [k, v.size]}.sort_by {|k, v| -v}.to_h.each do |k, v|
+          RecentUrl.create(url: k, count: v, created_at: now)
+        end
+      end
+      sleep(20.minutes)
+    end
+  end
+
+  def media
+    loop do
+      ActiveRecord::Base.transaction do
+        subdir = Date.today.strftime('%Y%m%d')
+        Medium.where(downloaded: false).each do |m|
+          p m.url
+          download_image(m.url, subdir)
+          m.subdir = subdir
+          m.downloaded = true
+          m.save
+          sleep(0.5.seconds)
+        end
+      end
+    end
+  end
+
   def check_tweet(tweet)
     tweet = TweetText.find(tweet.id)
     tweet.deleted = true
@@ -54,7 +96,7 @@ module GetTweet::Tweet
     rescue Twitter::Error::NotFound
       Rails.logger.info("Target Tweet #{tweet_id} Not found")
     rescue Twitter::Error::Forbidden
-      Rails.logger.info("Forbiddent to access Target Tweet #{tweet_id}")
+      Rails.logger.info("Forbidden to access Target Tweet #{tweet_id}")
     end
   end
 
@@ -93,10 +135,40 @@ module GetTweet::Tweet
           url = Url.find_or_create_by(url: u.expanded_url.to_s)
           TweetsUrl.create!(url: url, tweet_text_id: tweet.id)
         end
+
+        t.media.each do |m|
+          url = m.media_url_https.to_s
+          Medium.create!(tweet_text_id: tweet.id, filename: File.basename(url), url: url)
+        end
+
+        t.user_mentions.each do |m|
+          um = UserMention.new(tweet_text_id: tweet.id, tweet_user_id: m.id)
+          um.save!(validate: false)
+        end
+
       end
 
       tweet
     end
+  end
+
+  def download_image(url, dir)
+    filename = File.basename(url)
+    path = "app/assets/images/#{dir}"
+    FileUtils.mkdir_p(path) unless FileTest.exist?(path)
+    begin
+      open(url) do |image|
+        File.open(Rails.root.join('app', 'assets', 'images', dir, filename), 'wb') do |f|
+          f.puts image.read
+        end
+      end
+    rescue OpenURI::HTTPError
+      Rails.logger.info("Target Image #{url} Not found")
+    end
+  end
+
+  def create_user user_id
+    store_user(rest.user(user_id))
   end
 
   def store_user u

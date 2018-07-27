@@ -7,4 +7,12 @@ namespace :get_tweet do
   task reply: :environment do
     GetTweet::Tweet.reply
   end
+
+  task ranking: :environment do
+    GetTweet::Tweet.ranking
+  end
+
+  task media: :environment do
+    GetTweet::Tweet.media
+  end
 end
