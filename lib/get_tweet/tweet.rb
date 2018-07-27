@@ -24,47 +24,49 @@ module GetTweet::Tweet
           t.reply_check = false
           t.save
         rescue Twitter::Error::TooManyRequests
-          p 'too many requests, sleep 14 minutes'
+          Rails.logger.info('too many requests, sleep 14 minutes')
           sleep(14.minutes)
         end
       else
-        p 'no tweet to get, sleep 5 minutes'
+        Rails.logger.info('no tweet to get, sleep 5 minutes')
         sleep(5.minutes)
       end
     end
   end
 
   def check_tweet(tweet)
-    tweet = TweetText.find_by_tweet_id(tweet.id)
-    if tweet.present?
-      tweet.deleted = true
-      tweet.save
-    end
+    tweet = TweetText.find(tweet.id)
+    tweet.deleted = true
+    tweet.save
+  rescue ActiveRecord::RecordNotFound
+
   end
 
   def store_tweet_with_parent(tweet_id)
-    if TweetText.find_by_tweet_id(tweet_id).nil?
+    TweetText.find(tweet_id)
+  rescue ActiveRecord::RecordNotFound
+    begin
       t = rest.status(tweet_id)
       if t.is_a?(Twitter::Tweet) && (t.lang == 'ja')
         store_tweet(t, false)
         store_tweet_with_parent(t.in_reply_to_status_id) unless t.in_reply_to_status_id.nil?
       end
-    else
-      p 'already get'
+    rescue Twitter::Error::NotFound
+      Rails.logger.info("Target Tweet #{tweet_id} Not found")
+    rescue Twitter::Error::Forbidden
+      Rails.logger.info("Forbiddent to access Target Tweet #{tweet_id}")
     end
-  rescue Twitter::Error::NotFound
-    p 'Not found'
-  rescue Twitter::Error::Forbidden
-    p 'Forbidden'
-
   end
 
   def store_tweet(t, check)
     ActiveRecord::Base.transaction do
-      tweet = TweetText.find_by_tweet_id(t.id)
-      tweet = TweetText.new if tweet.nil?
+      begin
+        tweet = TweetText.find(t.id)
+      rescue ActiveRecord::RecordNotFound
+        tweet = TweetText.new
+      end
       tweet.text = t.full_text
-      tweet.tweet_id = t.id
+      tweet.id = t.id
       tweet.favorite_count = t.favorite_count
       tweet.in_reply_to_screen_name = t.in_reply_to_screen_name
       tweet.in_reply_to_status_id = t.in_reply_to_status_id
@@ -80,16 +82,30 @@ module GetTweet::Tweet
       tweet.retweet_id = t.retweeted_status.id
       tweet.position = "POINT(#{t.geo.coordinates[0]} #{t.geo.coordinates[1]})" if t.geo.present?
       user = store_user(t.user)
-      tweet.tweet_user_id = user.user_id
-      tweet.save
+
+      tweet.user_id = user.id
+      if tweet.save!(validate: false)
+        t.hashtags.each do |h|
+          hashtag = HashTag.find_or_create_by(tag: h.text)
+          TweetsHashTag.create!(tweet_text_id: tweet.id, hash_tag: hashtag)
+        end
+        t.urls.each do |u|
+          url = Url.find_or_create_by(url: u.expanded_url.to_s)
+          TweetsUrl.create!(url: url, tweet_text_id: tweet.id)
+        end
+      end
+
       tweet
     end
   end
 
   def store_user u
     ActiveRecord::Base.transaction do
-      user = TweetUser.find_by_user_id(u.id)
-      user = TweetUser.new if user.nil?
+      begin
+        user = TweetUser.find(u.id)
+      rescue ActiveRecord::RecordNotFound
+        user = TweetUser.new
+      end
       user.id = u.id
       user.name = u.name
       user.email = u.email

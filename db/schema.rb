@@ -10,27 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_27_012725) do
+ActiveRecord::Schema.define(version: 2018_07_27_050904) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "fuzzystrmatch"
   enable_extension "plpgsql"
   enable_extension "postgis"
-  enable_extension "postgis_tiger_geocoder"
-  enable_extension "postgis_topology"
 
-  create_table "parameters", force: :cascade do |t|
-    t.string "lang", default: "ja,en", null: false
-    t.string "consumer_key", null: false
-    t.string "consumer_secret", null: false
-    t.string "access_token", null: false
-    t.string "access_token_secret", null: false
+  create_table "hash_tags", force: :cascade do |t|
+    t.string "tag", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "media", force: :cascade do |t|
+    t.bigint "tweet_text_id"
+    t.string "filename", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tweet_text_id"], name: "index_media_on_tweet_text_id"
+  end
+
   create_table "tweet_texts", force: :cascade do |t|
-    t.bigint "tweet_id", default: 0, null: false
     t.integer "favorite_count", default: 0, null: false
     t.string "in_reply_to_screen_name"
     t.bigint "in_reply_to_status_id"
@@ -48,15 +48,15 @@ ActiveRecord::Schema.define(version: 2018_07_27_012725) do
     t.boolean "reply", default: false, null: false
     t.geography "position", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.bigint "retweet_id"
+    t.bigint "user_id"
     t.index ["in_reply_to_status_id"], name: "index_tweet_texts_on_in_reply_to_status_id"
     t.index ["in_reply_to_user_id"], name: "index_tweet_texts_on_in_reply_to_user_id"
     t.index ["reply_check"], name: "index_tweet_texts_on_reply_check"
-    t.index ["tweet_id"], name: "index_tweet_texts_on_tweet_id", unique: true
     t.index ["tweet_user_id"], name: "index_tweet_texts_on_tweet_user_id"
+    t.index ["user_id"], name: "index_tweet_texts_on_user_id"
   end
 
   create_table "tweet_users", force: :cascade do |t|
-    t.bigint "user_id", default: 0, null: false
     t.string "name"
     t.string "email"
     t.string "screen_name"
@@ -73,7 +73,35 @@ ActiveRecord::Schema.define(version: 2018_07_27_012725) do
     t.integer "utc_offset"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_tweet_users_on_user_id", unique: true
   end
 
+  create_table "tweets_hash_tags", force: :cascade do |t|
+    t.bigint "hash_tag_id"
+    t.bigint "tweet_text_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hash_tag_id"], name: "index_tweets_hash_tags_on_hash_tag_id"
+    t.index ["tweet_text_id"], name: "index_tweets_hash_tags_on_tweet_text_id"
+  end
+
+  create_table "tweets_urls", force: :cascade do |t|
+    t.bigint "tweet_text_id"
+    t.bigint "url_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tweet_text_id"], name: "index_tweets_urls_on_tweet_text_id"
+    t.index ["url_id"], name: "index_tweets_urls_on_url_id"
+  end
+
+  create_table "urls", force: :cascade do |t|
+    t.string "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "media", "tweet_texts"
+  add_foreign_key "tweets_hash_tags", "hash_tags"
+  add_foreign_key "tweets_hash_tags", "tweet_texts"
+  add_foreign_key "tweets_urls", "tweet_texts"
+  add_foreign_key "tweets_urls", "urls"
 end

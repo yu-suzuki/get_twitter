@@ -1,12 +1,13 @@
-<%= @tweet_texts.count %> Tweets<br>
+<%= @tweet_texts.count %> Tweets are collected<br>
 <%= @tweet_texts.where(reply_check: true).count %> Tweets have replies to get<br>
 <%= @tweet_texts.where(reply: true).count %> Tweets are replies<br>
 <%= @tweet_texts.where(retweet: true).count %> Tweets are retweets<br>
 <%= @tweet_texts.where(deleted: true).count %> Tweets are deleted<br>
 <%= @tweet_users.count %> Users<br>
 <br>
-Now: <%= DateTime.now %><br>
+<%= now = DateTime.now %>
+Now: <%= now %><br>
 <% 24.times.map.with_index do |i| %>
   <%= i+1 %> hrs before
-  <%= @tweet_texts.where(created_at: (DateTime.now - (i+1).hours)..(DateTime.now - (i).hours)).count %> Tweets<br>
+  <%= @tweet_texts.where(created_at: (now - (i+1).hours)..(now - (i).hours)).count %> Tweets<br>
 <% end %>

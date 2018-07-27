@@ -1,10 +1,10 @@
 namespace :get_tweet do
   desc "twitterからデータを読み込むタスク"
-  task twitter: :environment do
+  task stream: :environment do
     GetTweet::Tweet.batch
   end
 
-  task reply_tweet: :environment do
+  task reply: :environment do
     GetTweet::Tweet.reply
   end
 end

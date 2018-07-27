@@ -1,2 +1,3 @@
 class TweetText < ApplicationRecord
+
 end
