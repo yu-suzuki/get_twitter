@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lang:</strong>
+  <%= @parameter.lang %>
+</p>
+
+<p>
+  <strong>Consumer key:</strong>
+  <%= @parameter.consumer_key %>
+</p>
+
+<p>
+  <strong>Consumer secret:</strong>
+  <%= @parameter.consumer_secret %>
+</p>
+
+<p>
+  <strong>Access token:</strong>
+  <%= @parameter.access_token %>
+</p>
+
+<p>
+  <strong>Access token secret:</strong>
+  <%= @parameter.access_token_secret %>
+</p>
+
+<%= link_to 'Edit', edit_parameter_path(@parameter) %> |
+<%= link_to 'Back', parameters_path %>

@@ -1,0 +1,42 @@
+<%= form_with(model: parameter, local: true) do |form| %>
+  <% if parameter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(parameter.errors.count, "error") %> prohibited this parameter from being saved:</h2>
+
+      <ul>
+      <% parameter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :lang %>
+    <%= form.text_field :lang %>
+  </div>
+
+  <div class="field">
+    <%= form.label :consumer_key %>
+    <%= form.text_field :consumer_key %>
+  </div>
+
+  <div class="field">
+    <%= form.label :consumer_secret %>
+    <%= form.text_field :consumer_secret %>
+  </div>
+
+  <div class="field">
+    <%= form.label :access_token %>
+    <%= form.text_field :access_token %>
+  </div>
+
+  <div class="field">
+    <%= form.label :access_token_secret %>
+    <%= form.text_field :access_token_secret %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  name: 
+  screen_name: 
+  location: 
+  url: 
+  description: 
+  verified: 
+  followers_count: 
+  friends_count: 
+  listed_count: 
+  statuses_count: 
+  utc_offset: 1
+
+two:
+  user_id: 
+  name: 
+  screen_name: 
+  location: 
+  url: 
+  description: 
+  verified: 
+  followers_count: 
+  friends_count: 
+  listed_count: 
+  statuses_count: 
+  utc_offset: 1
