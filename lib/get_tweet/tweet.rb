@@ -170,6 +170,7 @@ module GetTweet::Tweet
   end
 
   def store_user u
+    user = nil
     ActiveRecord::Base.transaction do
       begin
         user = TweetUser.find(u.id)
@@ -193,8 +194,10 @@ module GetTweet::Tweet
       user.utc_offset = u.utc_offset
       user.created_at = u.created_at
       user.save
-      user
+    rescue ArgumentError
+      p 'Argument Error, continue'
     end
+    user
   end
 
   def streaming
