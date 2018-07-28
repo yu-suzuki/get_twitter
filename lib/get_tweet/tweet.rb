@@ -70,7 +70,7 @@ module GetTweet::Tweet
           m.subdir = subdir
           m.downloaded = true
           m.save
-          sleep(0.5.seconds)
+          sleep(1.seconds)
         end
       end
     end
