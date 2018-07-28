@@ -6,6 +6,8 @@
 <%= @tweet_texts.where(retweet: true).count %> Tweets are retweets<br>
 <%= @tweet_texts.where(deleted: true).count %> Tweets are deleted<br>
 <%= @tweet_users.count %> Users<br>
+<%= @media.count %> Images<br>
+<%= @media.where(downloaded: :false).count %> images to get<br>
 <br>
 
 <h1># of Tweets</h1>

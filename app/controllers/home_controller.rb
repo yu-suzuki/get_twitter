@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   def index
     @tweet_texts = TweetText.all
     @tweet_users = TweetUser.all
+    @media = Medium.all
 
     recent_hash_tag_time = RecentHashTag.order(created_at: :desc).first.created_at
     recent_urls = RecentUrl.order(created_at: :desc).first.created_at
