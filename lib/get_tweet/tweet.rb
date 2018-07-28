@@ -62,16 +62,14 @@ module GetTweet::Tweet
 
   def media
     loop do
-      ActiveRecord::Base.transaction do
-        subdir = Date.today.strftime('%Y%m%d')
-        Medium.where(downloaded: false).each do |m|
-          p m.url
-          download_image(m.url, subdir)
-          m.subdir = subdir
-          m.downloaded = true
-          m.save
-          sleep(1.seconds)
-        end
+      subdir = Date.today.strftime('%Y%m%d')
+      Medium.where(downloaded: false).each do |m|
+        p m.url
+        m.subdir = subdir
+        download_image(m.url, subdir)
+        m.downloaded = true
+        m.save
+        sleep(1.seconds)
       end
     end
   end
