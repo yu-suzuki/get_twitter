@@ -71,6 +71,8 @@ module GetTweet::Tweet
         m.save
         sleep(1.seconds)
       end
+    rescue Errno::ENETUNREACH
+      sleep(1.hour)
     end
   end
 
