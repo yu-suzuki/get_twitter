@@ -148,8 +148,11 @@ module GetTweet::Tweet
 
       end
 
+
       tweet
     end
+  rescue PG::NotNullViolation
+    p "not null violation"
   end
 
   def download_image(url, dir)
@@ -219,4 +222,5 @@ module GetTweet::Tweet
       config.access_token_secret = Rails.application.credentials.twitter_api[:access_token_secret]
     end
   end
+
 end
