@@ -81,7 +81,7 @@ module GetTweet::Tweet
     tweet.deleted = true
     tweet.save
   rescue ActiveRecord::RecordNotFound
-
+    p 'record not found'
   end
 
   def store_tweet_with_parent(tweet_id)
@@ -152,7 +152,7 @@ module GetTweet::Tweet
       tweet
     end
   rescue PG::NotNullViolation
-    p "not null violation"
+    p 'not null violation'
   end
 
   def download_image(url, dir)
