@@ -150,9 +150,9 @@ module GetTweet::Tweet
 
 
       tweet
+    rescue PG::NotNullViolation
+      p 'not null violation'
     end
-  rescue PG::NotNullViolation
-    p 'not null violation'
   end
 
   def download_image(url, dir)
