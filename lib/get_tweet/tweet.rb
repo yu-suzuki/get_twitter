@@ -152,6 +152,8 @@ module GetTweet::Tweet
       tweet
     rescue PG::NotNullViolation
       p 'not null violation'
+    rescue ActiveRecord::NotNullViolation
+      p 'not null violation'
     end
   end
 
