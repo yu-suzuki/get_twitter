@@ -148,8 +148,6 @@ module GetTweet::Tweet
 
       end
 
-      p tweet
-
       tweet
     rescue PG::NotNullViolation
       p 'not null violation'
