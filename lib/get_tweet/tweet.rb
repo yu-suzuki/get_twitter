@@ -85,7 +85,7 @@ module GetTweet::Tweet
     tweet.deleted = true
     tweet.save
   rescue ActiveRecord::RecordNotFound
-    p 'record not found'
+    #p 'record not found'
   end
 
   def store_tweet_with_parent(tweet_id)
