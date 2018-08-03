@@ -15,4 +15,6 @@ namespace :get_tweet do
   task media: :environment do
     GetTweet::Tweet.media
   end
+
+
 end

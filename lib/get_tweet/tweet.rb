@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'twitter'
+require 'json'
+require 'oauth'
 
 module GetTweet::Tweet
   module_function
@@ -14,6 +16,7 @@ module GetTweet::Tweet
     end
   end
 
+
   def reply
     loop do
       tweets = TweetText.where(reply_check: true)
@@ -23,9 +26,10 @@ module GetTweet::Tweet
           store_tweet_with_parent(t.retweet_id) if t.retweet?
           t.reply_check = false
           t.save
-        rescue Twitter::Error::TooManyRequests
-          Rails.logger.info('too many requests, sleep 14 minutes')
-          sleep(14.minutes)
+        rescue Twitter::Error::TooManyRequests => error
+          weight_time = error.rate_limit.reset_in + 1
+          Rails.logger.info('too many requests, sleep ' + weight_time.to_s)
+          sleep(weight_time.minutes)
         end
       else
         Rails.logger.info('no tweet to get, sleep 5 minutes')
