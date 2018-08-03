@@ -26,7 +26,7 @@ module GetTweet::Tweet
           t.save
         rescue Twitter::Error::TooManyRequests => error
           weight_time = error.rate_limit.reset_in + 1
-          Rails.logger.info('too many requests, sleep ' + weight_time.to_s)
+          p 'too many requests, sleep ' + weight_time.to_s
           sleep(weight_time.minutes)
         end
       else
