@@ -77,6 +77,8 @@ module GetTweet::Tweet
       end
     rescue Errno::ENETUNREACH
       sleep(1.hour)
+    rescue Net::OpenTimeout
+      sleep(10.minutes)
     end
   end
 
