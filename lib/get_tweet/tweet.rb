@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'twitter'
-require 'json'
-require 'oauth'
 
 module GetTweet::Tweet
   module_function
