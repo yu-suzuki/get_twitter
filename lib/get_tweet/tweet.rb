@@ -11,6 +11,8 @@ module GetTweet::Tweet
         store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja')
         check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
       end
+    rescue EOFError
+      p 'EOF error, reconnect'
     end
   end
 
