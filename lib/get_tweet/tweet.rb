@@ -103,6 +103,8 @@ module GetTweet::Tweet
       Rails.logger.info("Target Tweet #{tweet_id} Not found")
     rescue Twitter::Error::Forbidden
       Rails.logger.info("Forbidden to access Target Tweet #{tweet_id}")
+    rescue Twitter::Error::Unauthorized
+      Rails.logger.info("You have been blocked from the author of this tweet.")
     end
   end
 
