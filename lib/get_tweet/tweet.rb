@@ -20,21 +20,19 @@ module GetTweet::Tweet
   def reply
     loop do
       tweets = TweetText.where(reply_check: true)
-      if tweets.count.positive?
-        tweets.each do |t|
-          store_tweet_with_parent(t.in_reply_to_status_id) if t.reply?
-          store_tweet_with_parent(t.retweet_id) if t.retweet?
-          t.reply_check = false
-          t.save
-        rescue Twitter::Error::TooManyRequests => error
-          weight_time = error.rate_limit.reset_in + 1
-          p 'too many requests, sleep ' + weight_time.to_s +'seconds'
-          sleep(weight_time.seconds)
+      tweets.each do |t|
+        store_tweet_with_parent(t.in_reply_to_status_id) if t.reply?
+        store_tweet_with_parent(t.retweet_id) if t.retweet?
+        t.reply_check = false
+        t.save
+      rescue Twitter::Error::TooManyRequests => error
+        weight_time = error.rate_limit.reset_in + 1
+        p "too many requests, sleep #{weight_time.to_s} seconds"
+        sleep(weight_time.seconds)
       else
         Rails.logger.info('no tweet to get, sleep 5 minutes')
         sleep(5.minutes)
-      end
-    end
+      end if tweets.count.positive?
   end
 
   def ranking
