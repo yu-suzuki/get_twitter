@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_27_232704) do
+ActiveRecord::Schema.define(version: 2018_08_10_014808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +70,10 @@ ActiveRecord::Schema.define(version: 2018_07_27_232704) do
     t.bigint "user_id"
     t.index ["in_reply_to_status_id"], name: "index_tweet_texts_on_in_reply_to_status_id"
     t.index ["in_reply_to_user_id"], name: "index_tweet_texts_on_in_reply_to_user_id"
+    t.index ["reply"], name: "index_tweet_texts_on_reply"
     t.index ["reply_check"], name: "index_tweet_texts_on_reply_check"
+    t.index ["retweet", "reply"], name: "index_tweet_texts_on_retweet_and_reply"
+    t.index ["retweet"], name: "index_tweet_texts_on_retweet"
     t.index ["tweet_user_id"], name: "index_tweet_texts_on_tweet_user_id"
     t.index ["user_id"], name: "index_tweet_texts_on_user_id"
   end
