@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_10_014808) do
+ActiveRecord::Schema.define(version: 2018_08_10_030326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2018_08_10_014808) do
     t.string "url", default: "", null: false
     t.boolean "downloaded", default: false, null: false
     t.string "subdir"
+    t.index ["downloaded"], name: "index_media_on_downloaded"
     t.index ["tweet_text_id"], name: "index_media_on_tweet_text_id"
   end
 
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 2018_08_10_014808) do
     t.geography "position", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.bigint "retweet_id"
     t.bigint "user_id"
+    t.index ["deleted"], name: "index_tweet_texts_on_deleted"
     t.index ["in_reply_to_status_id"], name: "index_tweet_texts_on_in_reply_to_status_id"
     t.index ["in_reply_to_user_id"], name: "index_tweet_texts_on_in_reply_to_user_id"
     t.index ["reply"], name: "index_tweet_texts_on_reply"
