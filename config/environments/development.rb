@@ -59,5 +59,5 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.logger = Logger.new('log/trace.log', 14, 10 * 1024 * 1024)
+  #config.logger = Logger.new('log/trace.log', 14, 10 * 1024 * 1024)
 end
