@@ -13,6 +13,9 @@ module GetTweet::Tweet
       end
     rescue EOFError
       p 'EOF error, reconnect'
+    rescue ActiveRecord::StatementInvalid
+      p 'postgres error, reconnect'
+      sleep(1.minutes)
     end
   end
 
@@ -35,6 +38,9 @@ module GetTweet::Tweet
         Rails.logger.info('no tweet to get, sleep 5 minutes')
         sleep(5.minutes)
       end
+    rescue ActiveRecord::StatementInvalid
+      p 'postgres error, reconnect'
+      sleep(1.minutes)
     end
   end
 
@@ -61,6 +67,9 @@ module GetTweet::Tweet
         end
       end
       sleep(20.minutes)
+    rescue ActiveRecord::StatementInvalid
+      p 'postgres error, reconnect'
+      sleep(1.minutes)
     end
   end
 
@@ -79,6 +88,9 @@ module GetTweet::Tweet
       sleep(1.hour)
     rescue Net::OpenTimeout
       sleep(10.minutes)
+    rescue ActiveRecord::StatementInvalid
+      p 'postgres error, reconnect'
+      sleep(1.minutes)
     end
   end
 
