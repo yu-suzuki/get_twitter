@@ -18,7 +18,7 @@ module GetTweet::Tweet
       ActiveRecord::Base.connection.reconnect!
     rescue JSON::ParserError
       p 'Exceeded connection limit for user'
-      sleep(10.minutes)
+      sleep(1.minutes)
     end
   end
 
