@@ -15,7 +15,7 @@ module GetTweet::Tweet
       p 'EOF error, reconnect'
     rescue ActiveRecord::StatementInvalid
       p 'postgres error, reconnect'
-      sleep(1.minutes)
+      ActiveRecord::Base.connection.reconnect!
     end
   end
 
@@ -40,7 +40,7 @@ module GetTweet::Tweet
       end
     rescue ActiveRecord::StatementInvalid
       p 'postgres error, reconnect'
-      sleep(1.minutes)
+      ActiveRecord::Base.connection.reconnect!
     end
   end
 
@@ -69,7 +69,7 @@ module GetTweet::Tweet
       sleep(20.minutes)
     rescue ActiveRecord::StatementInvalid
       p 'postgres error, reconnect'
-      sleep(1.minutes)
+      ActiveRecord::Base.connection.reconnect!
     end
   end
 
