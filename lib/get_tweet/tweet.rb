@@ -16,6 +16,9 @@ module GetTweet::Tweet
     rescue ActiveRecord::StatementInvalid
       p 'postgres error, reconnect'
       ActiveRecord::Base.connection.reconnect!
+    rescue JSON::ParserError
+      p 'Exceeded connection limit for user'
+      sleep(10.minutes)
     end
   end
 
