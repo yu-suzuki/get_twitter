@@ -8,8 +8,10 @@ module GetTweet::Tweet
   def batch
     loop do
       streaming.sample do |t|
-        store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja')
-        check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+        Thread.new do
+          store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+          check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+        end
       end
     rescue EOFError
       p 'EOF error, reconnect'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_10_030326) do
+ActiveRecord::Schema.define(version: 2018_08_23_005418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2018_08_10_030326) do
     t.geography "position", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.bigint "retweet_id"
     t.bigint "user_id"
+    t.index ["created_at"], name: "index_tweet_texts_on_created_at"
     t.index ["deleted"], name: "index_tweet_texts_on_deleted"
     t.index ["in_reply_to_status_id"], name: "index_tweet_texts_on_in_reply_to_status_id"
     t.index ["in_reply_to_user_id"], name: "index_tweet_texts_on_in_reply_to_user_id"
@@ -77,6 +78,7 @@ ActiveRecord::Schema.define(version: 2018_08_10_030326) do
     t.index ["retweet", "reply"], name: "index_tweet_texts_on_retweet_and_reply"
     t.index ["retweet"], name: "index_tweet_texts_on_retweet"
     t.index ["tweet_user_id"], name: "index_tweet_texts_on_tweet_user_id"
+    t.index ["updated_at"], name: "index_tweet_texts_on_updated_at"
     t.index ["user_id"], name: "index_tweet_texts_on_user_id"
   end
 
