@@ -87,6 +87,7 @@ module GetTweet::Tweet
         download_image(m.url, subdir)
         m.downloaded = true
         m.save
+        random = Random.new()
         sleep(random.rand(2.0) * 0.1 + 0.4)
       end
     rescue Errno::ENETUNREACH
