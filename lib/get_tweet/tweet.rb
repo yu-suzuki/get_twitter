@@ -253,7 +253,6 @@ module GetTweet::Tweet
     api = Rails.application.credentials.twitter_api if Rails.env.production?
     api = Rails.application.credentials.twitter_dev if Rails.env.test?
     api = Rails.application.credentials.twitter_dev if Rails.env.development?
-    p api
     Twitter::REST::Client.new do |config|
       config.consumer_key = api[:consumer_key]
       config.consumer_secret = api[:consumer_secret]
