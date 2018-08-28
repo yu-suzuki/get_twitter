@@ -11,6 +11,8 @@ module GetTweet::Tweet
         Thread.new do
           ActiveRecord::Base.connection_pool.with_connection do
             store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+          end
+          ActiveRecord::Base.connection_pool.with_connection do
             check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
           end
         end
@@ -132,50 +134,46 @@ module GetTweet::Tweet
 
   def store_tweet(t, check)
     ActiveRecord::Base.transaction do
-      begin
-        tweet = TweetText.find(t.id)
-      rescue ActiveRecord::RecordNotFound
-        tweet = TweetText.new
-      end
-      tweet.text = t.full_text
-      tweet.id = t.id
-      tweet.favorite_count = t.favorite_count
-      tweet.in_reply_to_screen_name = t.in_reply_to_screen_name
-      tweet.in_reply_to_status_id = t.in_reply_to_status_id
-      tweet.in_reply_to_user_id = t.in_reply_to_user_id
-      tweet.lang = t.lang
-      tweet.retweet_count = t.retweet_count
-      tweet.source = t.source
-      tweet.created_at = t.created_at
-      tweet.deleted = false
-      tweet.reply = t.reply?
-      tweet.retweet = t.retweet?
+      tweet = TweetText.find_or_create_by(id: t.id,
+                                          text: t.full_text,
+                                          favorite_count: t.favorite_count,
+                                          in_reply_to_screen_name: t.in_reply_to_screen_name,
+                                          in_reply_to_status_id: t.in_reply_to_status_id,
+                                          in_reply_to_user_id: t.in_reply_to_user_id,
+                                          lang: t.lang,
+                                          retweet_count: t.retweet_count,
+                                          source: t.source,
+                                          created_at: t.created_at,
+                                          deleted: false,
+                                          reply: t.reply?,
+                                          retweet: t.retweet?,
+                                          retweet_id: t.retweeted_status.id
+      )
+
       tweet.reply_check = true if check && (t.reply? || t.retweet?)
-      tweet.retweet_id = t.retweeted_status.id
       tweet.position = "POINT(#{t.geo.coordinates[0]} #{t.geo.coordinates[1]})" if t.geo.present?
+      tweet.save
       user = store_user(t.user)
 
       tweet.user_id = user.id
-      if tweet.save!(validate: false)
-        t.hashtags.each do |h|
-          hashtag = HashTag.find_or_create_by(tag: h.text)
-          TweetsHashTag.find_or_create_by(tweet_text_id: tweet.id, hash_tag: hashtag)
-        end
-        t.urls.each do |u|
-          url = Url.find_or_create_by(url: u.expanded_url.to_s)
-          TweetsUrl.find_or_create_by(url: url, tweet_text_id: tweet.id)
-        end
-
-        t.media.each do |m|
-          url = m.media_url_https.to_s
-          Medium.find_or_create_by(tweet_text_id: tweet.id, filename: File.basename(url), url: url)
-        end
-
-        t.user_mentions.each do |m|
-          UserMention.find_or_create_by(tweet_text_id: tweet.id, tweet_user_id: m.id)
-        end
-
+      t.hashtags.each do |h|
+        hashtag = HashTag.find_or_create_by(tag: h.text)
+        TweetsHashTag.find_or_create_by(tweet_text_id: tweet.id, hash_tag: hashtag)
       end
+      t.urls.each do |u|
+        url = Url.find_or_create_by(url: u.expanded_url.to_s)
+        TweetsUrl.find_or_create_by(url: url, tweet_text_id: tweet.id)
+      end
+
+      t.media.each do |m|
+        url = m.media_url_https.to_s
+        Medium.find_or_create_by(tweet_text_id: tweet.id, filename: File.basename(url), url: url)
+      end
+
+      t.user_mentions.each do |m|
+        UserMention.find_or_create_by(tweet_text_id: tweet.id, tweet_user_id: m.id)
+      end
+
 
       tweet
     rescue PG::NotNullViolation
