@@ -17,10 +17,10 @@ class HomeController < ApplicationController
     rest = GetTweet::Tweet.rest
     CSV.foreach(file_params[:file].path, headers: false, encoding: 'utf-8') do |r|
       begin
-        t = rest.status(r[1])
-        if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-          GetTweet::Tweet.store_tweet(t, false)
-          GetTweet::Tweet.store_tweet_with_parent(t.in_reply_to_status_id) unless t.in_reply_to_status_id.nil?
+        tweet_id = r[1]
+        unless TweetText.exists?(tweet_id)
+          t = rest.status(tweet_id)
+          GetTweet::Tweet.store_tweet_with_parent(t)
         end
       rescue Twitter::Error::NotFound
         Rails.logger.info("Target Tweet #{tweet_id} Not found")
@@ -38,11 +38,11 @@ class HomeController < ApplicationController
         p 'too many requests, sleep ' + weight_time.to_s
         sleep(weight_time.seconds)
       end
-      p t
     end
   end
 
   private
+
   def file_params
     params.permit(:file)
   end

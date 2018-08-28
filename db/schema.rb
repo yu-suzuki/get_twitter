@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_23_005418) do
+ActiveRecord::Schema.define(version: 2018_08_28_080654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2018_08_23_005418) do
     t.boolean "downloaded", default: false, null: false
     t.string "subdir"
     t.index ["downloaded"], name: "index_media_on_downloaded"
+    t.index ["tweet_text_id", "filename"], name: "index_media_on_tweet_text_id_and_filename", unique: true
     t.index ["tweet_text_id"], name: "index_media_on_tweet_text_id"
   end
 
@@ -107,6 +108,7 @@ ActiveRecord::Schema.define(version: 2018_08_23_005418) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hash_tag_id"], name: "index_tweets_hash_tags_on_hash_tag_id"
+    t.index ["tweet_text_id", "hash_tag_id"], name: "index_tweets_hash_tags_on_tweet_text_id_and_hash_tag_id", unique: true
     t.index ["tweet_text_id"], name: "index_tweets_hash_tags_on_tweet_text_id"
   end
 
@@ -115,6 +117,7 @@ ActiveRecord::Schema.define(version: 2018_08_23_005418) do
     t.bigint "url_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tweet_text_id", "url_id"], name: "index_tweets_urls_on_tweet_text_id_and_url_id", unique: true
     t.index ["tweet_text_id"], name: "index_tweets_urls_on_tweet_text_id"
     t.index ["url_id"], name: "index_tweets_urls_on_url_id"
   end
@@ -130,6 +133,7 @@ ActiveRecord::Schema.define(version: 2018_08_23_005418) do
     t.bigint "tweet_user_id", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tweet_text_id", "tweet_user_id"], name: "index_user_mentions_on_tweet_text_id_and_tweet_user_id", unique: true
     t.index ["tweet_text_id"], name: "index_user_mentions_on_tweet_text_id"
   end
 

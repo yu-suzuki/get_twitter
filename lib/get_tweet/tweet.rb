@@ -157,21 +157,20 @@ module GetTweet::Tweet
       if tweet.save!(validate: false)
         t.hashtags.each do |h|
           hashtag = HashTag.find_or_create_by(tag: h.text)
-          TweetsHashTag.create!(tweet_text_id: tweet.id, hash_tag: hashtag)
+          TweetsHashTag.find_or_create_by(tweet_text_id: tweet.id, hash_tag: hashtag)
         end
         t.urls.each do |u|
           url = Url.find_or_create_by(url: u.expanded_url.to_s)
-          TweetsUrl.create!(url: url, tweet_text_id: tweet.id)
+          TweetsUrl.find_or_create_by(url: url, tweet_text_id: tweet.id)
         end
 
         t.media.each do |m|
           url = m.media_url_https.to_s
-          Medium.create!(tweet_text_id: tweet.id, filename: File.basename(url), url: url)
+          Medium.find_or_create_by(tweet_text_id: tweet.id, filename: File.basename(url), url: url)
         end
 
         t.user_mentions.each do |m|
-          um = UserMention.new(tweet_text_id: tweet.id, tweet_user_id: m.id)
-          um.save!(validate: false)
+          UserMention.find_or_create_by(tweet_text_id: tweet.id, tweet_user_id: m.id)
         end
 
       end
