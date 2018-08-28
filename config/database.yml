@@ -86,6 +86,7 @@ test:
 #
 production:
   <<: *default
+  host: vm4
   database: twitter_production
-  username: twitter
-  password: <%= ENV['GET_TWITTER_DATABASE_PASSWORD'] %>
+  #username: twitter
+  #password: <%= ENV['GET_TWITTER_DATABASE_PASSWORD'] %>
