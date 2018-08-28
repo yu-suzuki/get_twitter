@@ -13,7 +13,7 @@
 <h1># of Tweets</h1>
 <%= now = DateTime.now %>
 Now: <%= now %><br>
-<% 24.times.map.with_index do |i| %>
+<% 12.times.map.with_index do |i| %>
   <%= i + 1 %> hrs before
   <%= @tweet_texts.where(created_at: (now - (i + 1).hours)..(now - (i).hours)).count %> Tweets<br>
 <% end %>
@@ -40,3 +40,13 @@ Now: <%= now %><br>
     <li><%= link_to h.url.url, h.url.url %></li>
   <% end %>
 </ol>
+
+<h1>Insert Tweet</h1>
+<div class="panel-body">
+  <%= form_with(multipart: true, url: home_insert_tweet_path) do |f| %>
+    <div class="form-group">
+      <%= file_field_tag :file %>
+      <%= submit_tag 'submit' %>
+    </div>
+  <% end %>
+</div>

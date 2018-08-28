@@ -53,8 +53,8 @@ module GetTweet::Tweet
     loop do
       ActiveRecord::Base.transaction do
         now = DateTime.now
-        hashtags = Array.new
-        urls = Array.new
+        hashtags = []
+        urls = []
         TweetText.where(created_at: now - 1.hour..now).includes(:tweets_hash_tags, :hash_tags, :tweets_urls, :urls).each do |t|
           t.hash_tags.each do |h|
             hashtags << h
@@ -87,7 +87,7 @@ module GetTweet::Tweet
         download_image(m.url, subdir)
         m.downloaded = true
         m.save
-        random = Random.new()
+        random = Random.new
         sleep(random.rand(2.0) * 0.1 + 0.4)
       end
     rescue Errno::ENETUNREACH
@@ -113,7 +113,7 @@ module GetTweet::Tweet
   rescue ActiveRecord::RecordNotFound
     begin
       t = rest.status(tweet_id)
-      if t.is_a?(Twitter::Tweet) && (t.lang == 'ja')
+      if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
         store_tweet(t, false)
         store_tweet_with_parent(t.in_reply_to_status_id) unless t.in_reply_to_status_id.nil?
       end
@@ -199,11 +199,11 @@ module GetTweet::Tweet
     end
   end
 
-  def create_user user_id
+  def create_user(user_id)
     store_user(rest.user(user_id))
   end
 
-  def store_user u
+  def store_user(u)
     user = nil
     ActiveRecord::Base.transaction do
       begin
@@ -235,20 +235,28 @@ module GetTweet::Tweet
   end
 
   def streaming
+    api = Rails.application.credentials.twitter_api if Rails.env.production?
+    api = Rails.application.credentials.twitter_dev if Rails.env.test?
+    api = Rails.application.credentials.twitter_dev if Rails.env.development?
+
     Twitter::Streaming::Client.new do |config|
-      config.consumer_key = Rails.application.credentials.twitter_api[:consumer_key]
-      config.consumer_secret = Rails.application.credentials.twitter_api[:consumer_secret]
-      config.access_token = Rails.application.credentials.twitter_api[:access_token]
-      config.access_token_secret = Rails.application.credentials.twitter_api[:access_token_secret]
+      config.consumer_key = api[:consumer_key]
+      config.consumer_secret = api[:consumer_secret]
+      config.access_token = api[:access_token]
+      config.access_token_secret = api[:access_token_secret]
     end
   end
 
   def rest
+    api = Rails.application.credentials.twitter_api if Rails.env.production?
+    api = Rails.application.credentials.twitter_dev if Rails.env.test?
+    api = Rails.application.credentials.twitter_dev if Rails.env.development?
+    p api
     Twitter::REST::Client.new do |config|
-      config.consumer_key = Rails.application.credentials.twitter_api[:consumer_key]
-      config.consumer_secret = Rails.application.credentials.twitter_api[:consumer_secret]
-      config.access_token = Rails.application.credentials.twitter_api[:access_token]
-      config.access_token_secret = Rails.application.credentials.twitter_api[:access_token_secret]
+      config.consumer_key = api[:consumer_key]
+      config.consumer_secret = api[:consumer_secret]
+      config.access_token = api[:access_token]
+      config.access_token_secret = api[:access_token_secret]
     end
   end
 
