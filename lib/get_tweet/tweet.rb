@@ -9,8 +9,10 @@ module GetTweet::Tweet
     loop do
       streaming.sample do |t|
         Thread.new do
-          store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-          check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+          ActiveRecord::Base.connection_pool.with_connection do
+            store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+            check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+          end
         end
       end
     rescue EOFError
