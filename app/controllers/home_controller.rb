@@ -19,8 +19,8 @@ class HomeController < ApplicationController
       begin
         t = rest.status(r[1])
         if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-          store_tweet(t, false)
-          store_tweet_with_parent(t.in_reply_to_status_id) unless t.in_reply_to_status_id.nil?
+          GetTweet::Tweet.store_tweet(t, false)
+          GetTweet::Tweet.store_tweet_with_parent(t.in_reply_to_status_id) unless t.in_reply_to_status_id.nil?
         end
       rescue Twitter::Error::NotFound
         Rails.logger.info("Target Tweet #{tweet_id} Not found")
