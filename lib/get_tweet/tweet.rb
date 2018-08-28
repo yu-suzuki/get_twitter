@@ -230,6 +230,8 @@ module GetTweet::Tweet
       user.save
     rescue ArgumentError
       p 'Argument Error, continue'
+    rescue ActiveRecord::RecordNotUnique
+      p 'violates unique constraint'
     end
     user
   end
