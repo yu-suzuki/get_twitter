@@ -31,7 +31,7 @@ module GetTweet::Tweet
 
   def reply
     loop do
-      tweets = TweetText.where(reply_check: true)
+      tweets = TweetText.where(reply_check: true).limit(100)
       if tweets.count.positive?
         tweets.each do |t|
           store_tweet_with_parent(t.in_reply_to_status_id) if t.reply?
@@ -85,7 +85,7 @@ module GetTweet::Tweet
   def media
     loop do
       subdir = Date.today.strftime('%Y%m%d')
-      Medium.where(downloaded: false).each do |m|
+      Medium.where(downloaded: false).limit(100).each do |m|
         p m.url
         m.subdir = subdir
         download_image(m.url, subdir)
