@@ -21,6 +21,8 @@ module GetTweet::Tweet
     rescue JSON::ParserError
       p 'Exceeded connection limit for user'
       sleep(1.minutes)
+    rescue ActiveRecord::ConnectionTimeoutError
+      p 'postgres connection time out'
     end
   end
 

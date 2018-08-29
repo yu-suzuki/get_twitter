@@ -20,7 +20,7 @@ default: &default
 
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 50 } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 100 } %>
   username: twitter
   password: twitter
   postgis_extension: postgis      # default is postgis
