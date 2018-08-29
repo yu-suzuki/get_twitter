@@ -130,54 +130,56 @@ module GetTweet::Tweet
 
   def store_tweet(t, check)
     ActiveRecord::Base.connection_pool.with_connection do
-      ActiveRecord::Base.transaction do
-        tweet = TweetText.find_or_create_by(id: t.id,
-                                            text: t.full_text,
-                                            favorite_count: t.favorite_count,
-                                            in_reply_to_screen_name: t.in_reply_to_screen_name,
-                                            in_reply_to_status_id: t.in_reply_to_status_id,
-                                            in_reply_to_user_id: t.in_reply_to_user_id,
-                                            lang: t.lang,
-                                            retweet_count: t.retweet_count,
-                                            source: t.source,
-                                            created_at: t.created_at,
-                                            deleted: false,
-                                            reply: t.reply?,
-                                            retweet: t.retweet?,
-                                            retweet_id: t.retweeted_status.id
-        )
+      tweet = TweetText.find_or_create_by(id: t.id,
+                                          text: t.full_text,
+                                          favorite_count: t.favorite_count,
+                                          in_reply_to_screen_name: t.in_reply_to_screen_name,
+                                          in_reply_to_status_id: t.in_reply_to_status_id,
+                                          in_reply_to_user_id: t.in_reply_to_user_id,
+                                          lang: t.lang,
+                                          retweet_count: t.retweet_count,
+                                          source: t.source,
+                                          created_at: t.created_at,
+                                          deleted: false,
+                                          reply: t.reply?,
+                                          retweet: t.retweet?,
+                                          retweet_id: t.retweeted_status.id
+      )
 
-        tweet.reply_check = true if check && (t.reply? || t.retweet?)
-        tweet.position = "POINT(#{t.geo.coordinates[0]} #{t.geo.coordinates[1]})" if t.geo.present?
-        tweet.save
-        user = store_user(t.user)
+      tweet.reply_check = true if check && (t.reply? || t.retweet?)
+      tweet.position = "POINT(#{t.geo.coordinates[0]} #{t.geo.coordinates[1]})" if t.geo.present?
+      tweet.save
+      user = store_user(t.user)
 
-        tweet.user_id = user.id
-        t.hashtags.each do |h|
-          hashtag = HashTag.find_or_create_by(tag: h.text)
-          TweetsHashTag.find_or_create_by(tweet_text_id: tweet.id, hash_tag: hashtag)
-        end
-        t.urls.each do |u|
-          url = Url.find_or_create_by(url: u.expanded_url.to_s)
-          TweetsUrl.find_or_create_by(url: url, tweet_text_id: tweet.id)
-        end
-
-        t.media.each do |m|
-          url = m.media_url_https.to_s
-          Medium.find_or_create_by(tweet_text_id: tweet.id, filename: File.basename(url), url: url)
-        end
-
-        t.user_mentions.each do |m|
-          UserMention.find_or_create_by(tweet_text_id: tweet.id, tweet_user_id: m.id)
-        end
-
-
-        tweet
-      rescue PG::NotNullViolation
-        p 'not null violation'
-      rescue ActiveRecord::NotNullViolation
-        p 'not null violation'
+      tweet.user_id = user.id
+      t.hashtags.each do |h|
+        hashtag = HashTag.find_or_create_by(tag: h.text)
+        TweetsHashTag.find_or_create_by(tweet_text_id: tweet.id, hash_tag: hashtag)
       end
+      t.urls.each do |u|
+        url = Url.find_or_create_by(url: u.expanded_url.to_s)
+        TweetsUrl.find_or_create_by(url: url, tweet_text_id: tweet.id)
+      end
+
+      t.media.each do |m|
+        url = m.media_url_https.to_s
+        Medium.find_or_create_by(tweet_text_id: tweet.id, filename: File.basename(url), url: url)
+      end
+
+      t.user_mentions.each do |m|
+        UserMention.find_or_create_by(tweet_text_id: tweet.id, tweet_user_id: m.id)
+      end
+
+
+      tweet
+    rescue PG::NotNullViolation
+      p 'not null violation'
+    rescue ActiveRecord::NotNullViolation
+      p 'not null violation'
+    rescue PG::UniqueViolation
+      p 'unique violation'
+    rescue ActiveRecord::RecordNotUnique
+      p 'unique violation'
     end
   end
 
