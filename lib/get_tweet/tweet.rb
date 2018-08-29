@@ -23,6 +23,8 @@ module GetTweet::Tweet
       sleep(1.minutes)
     rescue ActiveRecord::ConnectionTimeoutError
       p 'postgres connection time out'
+    rescue Errno::ECONNRESET
+      p 'connection reset'
     end
   end
 
