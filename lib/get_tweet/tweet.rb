@@ -113,22 +113,24 @@ module GetTweet::Tweet
   end
 
   def store_tweet_with_parent(tweet_id)
-    TweetText.find(tweet_id)
-  rescue ActiveRecord::RecordNotFound
     begin
-      t = rest.status(tweet_id)
-      if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-        store_tweet(t, false)
-        store_tweet_with_parent(t.in_reply_to_status_id) unless t.in_reply_to_status_id.nil?
+      TweetText.find(tweet_id)
+    rescue ActiveRecord::RecordNotFound
+      begin
+        t = rest.status(tweet_id)
+        if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+          store_tweet(t, false)
+          store_tweet_with_parent(t.in_reply_to_status_id) unless t.in_reply_to_status_id.nil?
+        end
+      rescue Twitter::Error::NotFound
+        Rails.logger.info("Target Tweet #{tweet_id} Not found")
+      rescue Twitter::Error::Forbidden
+        Rails.logger.info("Forbidden to access Target Tweet #{tweet_id}")
+      rescue Twitter::Error::Unauthorized
+        Rails.logger.info('You have been blocked from the author of this tweet.')
+      rescue Twitter::Error::ServiceUnavailable
+        Rails.logger.info('Twitter Service Unavailable.')
       end
-    rescue Twitter::Error::NotFound
-      Rails.logger.info("Target Tweet #{tweet_id} Not found")
-    rescue Twitter::Error::Forbidden
-      Rails.logger.info("Forbidden to access Target Tweet #{tweet_id}")
-    rescue Twitter::Error::Unauthorized
-      Rails.logger.info('You have been blocked from the author of this tweet.')
-    rescue Twitter::Error::ServiceUnavailable
-      Rails.logger.info('Twitter Service Unavailable.')
     end
   end
 
