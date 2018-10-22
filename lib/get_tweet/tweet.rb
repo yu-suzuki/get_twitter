@@ -8,6 +8,7 @@ module GetTweet::Tweet
   def batch
     loop do
       streaming.sample do |t|
+        Rails.application.eager_load!
         Thread.new do
           store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
           check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
@@ -31,6 +32,7 @@ module GetTweet::Tweet
 
   def reply
     loop do
+      Rails.application.eager_load!
       tweets = TweetText.where(reply_check: true).limit(100)
       if tweets.count.positive?
         tweets.each do |t|
