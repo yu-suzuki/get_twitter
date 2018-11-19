@@ -44,6 +44,8 @@ module GetTweet::Tweet
           weight_time = error.rate_limit.reset_in + 1
           p 'too many requests, sleep ' + weight_time.to_s
           sleep(weight_time.seconds)
+        rescue ActiveRecord::RecordNotFound => error
+          p 'ActiveRecord, RecordNotFound'
         end
       else
         Rails.logger.info('no tweet to get, sleep 5 minutes')
