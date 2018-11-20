@@ -26,6 +26,10 @@ module GetTweet::Tweet
       p 'postgres connection time out'
     rescue Errno::ECONNRESET
       p 'connection reset'
+    rescue HTTP::ConnectionError
+      p 'HTTP error, reconnect'
+      sleep(1.minute)
+      ActiveRecord::Base.connection.reconnect!
     end
   end
 
@@ -53,6 +57,10 @@ module GetTweet::Tweet
       end
     rescue ActiveRecord::StatementInvalid
       p 'postgres error, reconnect'
+      ActiveRecord::Base.connection.reconnect!
+    rescue HTTP::ConnectionError
+      p 'HTTP error, reconnect'
+      sleep(1.minute)
       ActiveRecord::Base.connection.reconnect!
     end
   end
@@ -105,6 +113,9 @@ module GetTweet::Tweet
     rescue ActiveRecord::StatementInvalid
       p 'postgres error, reconnect'
       sleep(1.minutes)
+    rescue HTTP::ConnectionError
+      p 'HTTP error, reconnect'
+      sleep(1.minute)
     end
   end
 
