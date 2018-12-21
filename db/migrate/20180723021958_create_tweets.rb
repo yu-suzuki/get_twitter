@@ -5,12 +5,12 @@ class CreateTweets < ActiveRecord::Migration[5.2]
       t.integer :favorite_count, null: false, default: 0, unsigned: true
       t.string :filter_level, null: false
       t.string :in_reply_to_screen_name, null: true, default: nil
-      t.integer :in_reply_to_status_id, null: true, default: nil, limit: 8, unsigned: true
-      t.integer :in_reply_to_user_id, null: true, default: nil, limit: 8, unsigned: true
+      t.bigint :in_reply_to_status_id, null: true, default: nil, unsigned: true
+      t.bigint :in_reply_to_user_id, null: true, default: nil, unsigned: true
       t.string :lang, null: false
       t.integer :retweet_count, null: false, default: 0, unsigned: true
       t.string :source, null: true, default: nil
-      t.string :text, null: false
+      t.string :text, null: false, limit: 4000
 
       t.timestamps
     end

@@ -9,15 +9,16 @@ module GetTweet::Tweet
     loop do
       streaming.sample do |t|
         Rails.application.eager_load!
-        Thread.new do
-          store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-          check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
-        end
+        #Thread.new do
+        store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+        check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+        #end
       end
     rescue EOFError
       p 'EOF error, reconnect'
-    rescue ActiveRecord::StatementInvalid
+    rescue ActiveRecord::StatementInvalid => e
       p 'postgres error, reconnect'
+      p e
       ActiveRecord::Base.connection.reconnect!
     rescue JSON::ParserError
       p 'Exceeded connection limit for user'
@@ -151,6 +152,7 @@ module GetTweet::Tweet
 
   def store_tweet(t, check)
     ActiveRecord::Base.connection_pool.with_connection do
+      user = store_user(t.user)
       tweet = TweetText.find_or_create_by(id: t.id,
                                           text: t.full_text,
                                           favorite_count: t.favorite_count,
@@ -164,15 +166,18 @@ module GetTweet::Tweet
                                           deleted: false,
                                           reply: t.reply?,
                                           retweet: t.retweet?,
-                                          retweet_id: t.retweeted_status.id
+                                          retweet_id: t.retweeted_status.id,
+                                          tweet_user_id: user.id
       )
-
+      tweet.save!
       tweet.reply_check = true if check && (t.reply? || t.retweet?)
-      tweet.position = "POINT(#{t.geo.coordinates[0]} #{t.geo.coordinates[1]})" if t.geo.present?
-      tweet.save
-      user = store_user(t.user)
-
-      tweet.user_id = user.id
+      if t.geo.present?
+        p t.geo.coordinates[0], t.geo.coordinates[1], t.id
+        #tweet.position = "MDSYS.ST_GEOMETRY(SDO_GEOMETRY(2001, 8307, SDO_POINT_TYPE(#{t.geo.coordinates[0]}, #{t.geo.coordinates[1]},NULL),NULL,NULL))"
+        #tweet.position = "POINT(#{t.geo.coordinates[0]} #{t.geo.coordinates[1]})" if t.geo.present?
+        tweet.insert_position(t.geo.coordinates[0], t.geo.coordinates[1])
+        tweet.save!
+      end
       t.hashtags.each do |h|
         hashtag = HashTag.find_or_create_by(tag: h.text)
         TweetsHashTag.find_or_create_by(tweet_text_id: tweet.id, hash_tag: hashtag)
@@ -193,12 +198,8 @@ module GetTweet::Tweet
 
 
       tweet
-    rescue PG::NotNullViolation
-      p 'not null violation'
     rescue ActiveRecord::NotNullViolation
       p 'not null violation'
-    rescue PG::UniqueViolation
-      p 'unique violation'
     rescue ActiveRecord::RecordNotUnique
       p 'unique violation'
     end
@@ -236,7 +237,6 @@ module GetTweet::Tweet
       end
       user.id = u.id
       user.name = u.name
-      user.email = u.email
       user.screen_name = u.screen_name
       user.location = u.location
       user.url = u.url
@@ -258,6 +258,8 @@ module GetTweet::Tweet
     end
     user
   end
+
+
 
   def streaming
     api = Rails.application.credentials.twitter_api if Rails.env.production?

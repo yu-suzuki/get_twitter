@@ -20,26 +20,6 @@ Now: <%= now %><br>
 
 <br>
 
-<h1>Current Tweets</h1>
-<ul>
-  <% @tweet_texts.order(created_at: :desc).first(10).each do |t| %>
-  <li><%= t.text %></li>
-  <% end %>
-</ul>
-
-<h1>Current HashTags</h1>
-<ol>
-  <% @hash_tags.order(count: :desc).first(30).each do |h| %>
-  <li><%= h.hash_tag.tag %></li>
-  <% end %>
-</ol>
-
-<h1>Current URLs</h1>
-<ol>
-  <% @urls.order(count: :desc).first(30).each do |h| %>
-    <li><%= link_to h.url.url, h.url.url %></li>
-  <% end %>
-</ol>
 
 <h1>Insert Tweet</h1>
 <div class="panel-body">

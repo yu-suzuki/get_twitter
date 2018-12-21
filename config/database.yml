@@ -15,21 +15,23 @@
 # gem 'pg'
 #
 default: &default
-  adapter: postgis
-  encoding: unicode
+  adapter: oracle_enhanced
+  #encoding: unicode
 
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 200 } %>
-  username: twitter
-  password: twitter
-  postgis_extension: postgis      # default is postgis
-  postgis_schema: public          # default is public
-  schema_search_path: public,postgis
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 150 } %>
+  database: localhost:1521/ORCLPDB1
+  reconnect: true
+  #postgis_extension: postgis      # default is postgis
+  #postgis_schema: public          # default is public
+  #schema_search_path: public,postgis
 
 development:
   <<: *default
-  database: twitter_development
+  username: twitter_development
+  password: twitter_development
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -63,7 +65,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: twitter_test
+  username: twitter_test
+  password: twitter_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -86,7 +89,8 @@ test:
 #
 production:
   <<: *default
-  host: vm4
-  database: twitter_production
+  database: vm3:1521/ORCLPDB1
+  username: twitter_production
+  password: twitter_production
   #username: twitter
   #password: <%= ENV['GET_TWITTER_DATABASE_PASSWORD'] %>

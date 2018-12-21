@@ -7,7 +7,7 @@ class CreateTweetUsers < ActiveRecord::Migration[5.2]
       t.string :screen_name
       t.string :location
       t.string :url
-      t.string :description
+      t.string :description, limit: 4000
       t.boolean :verified, null: false, default: false
       t.integer :followers_count
       t.integer :friends_count
