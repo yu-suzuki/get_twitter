@@ -153,6 +153,7 @@ module GetTweet::Tweet
   def store_tweet(t, check)
     ActiveRecord::Base.connection_pool.with_connection do
       user = store_user(t.user)
+      reply_check = true if check && (t.reply? || t.retweet?)
       tweet = TweetText.find_or_create_by(id: t.id,
                                           text: t.full_text,
                                           favorite_count: t.favorite_count,
@@ -167,9 +168,10 @@ module GetTweet::Tweet
                                           reply: t.reply?,
                                           retweet: t.retweet?,
                                           retweet_id: t.retweeted_status.id,
-                                          tweet_user_id: user.id
+                                          tweet_user_id: user.id,
+                                          reply_check: reply_check
       )
-      tweet.reply_check = true if check && (t.reply? || t.retweet?)
+
       tweet.save!
 
 
