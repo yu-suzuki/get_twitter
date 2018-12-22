@@ -72,3 +72,4 @@ end
 gem 'delayed_job_active_record'
 gem 'rgeo'
 gem 'rgeo-activerecord'
+gem 'daemons'

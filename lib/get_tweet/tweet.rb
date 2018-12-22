@@ -169,15 +169,18 @@ module GetTweet::Tweet
                                           retweet_id: t.retweeted_status.id,
                                           tweet_user_id: user.id
       )
-      tweet.save!
       tweet.reply_check = true if check && (t.reply? || t.retweet?)
+      tweet.save!
+
+
       if t.geo.present?
-        p t.geo.coordinates[0], t.geo.coordinates[1], t.id
+        #p t.geo.coordinates[0], t.geo.coordinates[1], t.id
         #tweet.position = "MDSYS.ST_GEOMETRY(SDO_GEOMETRY(2001, 8307, SDO_POINT_TYPE(#{t.geo.coordinates[0]}, #{t.geo.coordinates[1]},NULL),NULL,NULL))"
         #tweet.position = "POINT(#{t.geo.coordinates[0]} #{t.geo.coordinates[1]})" if t.geo.present?
         tweet.insert_position(t.geo.coordinates[0], t.geo.coordinates[1])
-        tweet.save!
       end
+
+
       t.hashtags.each do |h|
         hashtag = HashTag.find_or_create_by(tag: h.text)
         TweetsHashTag.find_or_create_by(tweet_text_id: tweet.id, hash_tag: hashtag)
