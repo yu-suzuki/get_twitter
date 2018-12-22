@@ -1,5 +1,3 @@
-require 'csv'
-
 class HomeController < ApplicationController
   def index
     @tweet_texts = TweetText.all
