@@ -264,9 +264,9 @@ module GetTweet::Tweet
 
 
   def streaming
-    api = Rails.application.credentials.twitter_api if Rails.env.production?
-    api = Rails.application.credentials.twitter_dev if Rails.env.test?
-    api = Rails.application.credentials.twitter_dev if Rails.env.development?
+    api = Rails.application.credentials.twitter_dev if Rails.env.production?
+    api = Rails.application.credentials.twitter_api if Rails.env.test?
+    api = Rails.application.credentials.twitter_api if Rails.env.development?
 
     Twitter::Streaming::Client.new do |config|
       config.consumer_key = api[:consumer_key]
@@ -277,9 +277,9 @@ module GetTweet::Tweet
   end
 
   def rest
-    api = Rails.application.credentials.twitter_api if Rails.env.production?
-    api = Rails.application.credentials.twitter_dev if Rails.env.test?
-    api = Rails.application.credentials.twitter_dev if Rails.env.development?
+    api = Rails.application.credentials.twitter_dev if Rails.env.production?
+    api = Rails.application.credentials.twitter_api if Rails.env.test?
+    api = Rails.application.credentials.twitter_api if Rails.env.development?
     Twitter::REST::Client.new do |config|
       config.consumer_key = api[:consumer_key]
       config.consumer_secret = api[:consumer_secret]
