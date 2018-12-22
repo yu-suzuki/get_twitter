@@ -10,8 +10,8 @@ module GetTweet::Tweet
       streaming.sample do |t|
         Rails.application.eager_load!
         #Thread.new do
-        store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-        check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+        delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+        delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
         #end
       end
     rescue EOFError
@@ -202,6 +202,8 @@ module GetTweet::Tweet
       p 'not null violation'
     rescue ActiveRecord::RecordNotUnique
       p 'unique violation'
+    ensure
+      ActiveRecord::Base.connection.close
     end
   end
 
