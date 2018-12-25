@@ -6,23 +6,25 @@ module GetTweet::Tweet
   module_function
 
   def batch
-    loop do
-      streaming.sample do |t|
-        Rails.application.eager_load!
-        #Thread.new do
-        delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-        delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+    Rails.application.eager_load!
+    streaming.sample do |t|
+      #Thread.new do
+      delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+      delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
         #end
-      end
     rescue EOFError
       p 'EOF error, reconnect'
+      sleep(1.minutes)
+      retry
     rescue ActiveRecord::StatementInvalid => e
       p 'postgres error, reconnect'
       p e
       ActiveRecord::Base.connection.reconnect!
+      retry
     rescue JSON::ParserError
       p 'Exceeded connection limit for user'
       sleep(1.minutes)
+      retry
     rescue ActiveRecord::ConnectionTimeoutError
       p 'postgres connection time out'
     rescue Errno::ECONNRESET
@@ -31,6 +33,7 @@ module GetTweet::Tweet
       p 'HTTP error, reconnect'
       sleep(1.minute)
       ActiveRecord::Base.connection.reconnect!
+      retry
     end
   end
 
@@ -154,7 +157,7 @@ module GetTweet::Tweet
     ActiveRecord::Base.connection_pool.with_connection do
       user = store_user(t.user)
       reply_check = true if check && (t.reply? || t.retweet?)
-      p t.reply?, t.retweet?, reply_check
+      #p t.reply?, t.retweet?, reply_check
       tweet = TweetText.find_or_create_by(id: t.id,
                                           text: t.full_text,
                                           favorite_count: t.favorite_count,
@@ -268,11 +271,25 @@ module GetTweet::Tweet
   end
 
 
-
   def streaming
-    api = Rails.application.credentials.twitter_dev if Rails.env.production?
-    api = Rails.application.credentials.twitter_api if Rails.env.test?
-    api = Rails.application.credentials.twitter_api if Rails.env.development?
+    key_labels = ['twitter_api', 'twitter_dev', 'twitter_sub']
+    key_labels_test = ['twitter_sub2', 'twitter_sub3']
+
+    api = nil
+
+    if Rails.env.production?
+      case rand(3)
+      when 0
+        api = Rails.application.credentials.twitter_api
+      when 1
+        api = Rails.application.credentials.twitter_dev
+      when 2
+        api = Rails.application.credentials.twitter_sub
+      end
+    end
+    
+    api = Rails.application.credentials.twitter_sub if Rails.env.test?
+    api = Rails.application.credentials.twitter_sub if Rails.env.development?
 
     Twitter::Streaming::Client.new do |config|
       config.consumer_key = api[:consumer_key]
