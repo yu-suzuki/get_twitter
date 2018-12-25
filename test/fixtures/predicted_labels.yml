@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  classifier: one
+  tweet_text: one
+  label: MyString
+  probabiloty: 1.5
+
+two:
+  classifier: two
+  tweet_text: two
+  label: MyString
+  probabiloty: 1.5

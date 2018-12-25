@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_21_152000) do
+ActiveRecord::Schema.define(version: 2018_12_25_162548) do
+
+  create_table "classifiers", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "type", null: false
+    t.index ["created_at"], name: "i_classifiers_created_at"
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", precision: 38, default: 0, null: false
@@ -33,6 +41,14 @@ ActiveRecord::Schema.define(version: 2018_12_21_152000) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "labels", force: :cascade do |t|
+    t.integer "tweet_text_id", limit: 19, precision: 19
+    t.string "label", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tweet_text_id"], name: "index_labels_on_tweet_text_id"
+  end
+
   create_table "media", force: :cascade do |t|
     t.integer "tweet_text_id", limit: 19, precision: 19
     t.string "filename", null: false
@@ -44,6 +60,17 @@ ActiveRecord::Schema.define(version: 2018_12_21_152000) do
     t.index ["downloaded"], name: "index_media_on_downloaded"
     t.index ["tweet_text_id", "filename"], name: "i_media_tweet_text_id_filename", unique: true
     t.index ["tweet_text_id"], name: "index_media_on_tweet_text_id"
+  end
+
+  create_table "predicted_labels", force: :cascade do |t|
+    t.integer "classifier_id", limit: 19, precision: 19
+    t.integer "tweet_text_id", limit: 19, precision: 19
+    t.string "label", null: false
+    t.float "probability", default: 0.0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classifier_id"], name: "i_pre_lab_cla_id"
+    t.index ["tweet_text_id"], name: "i_pre_lab_twe_tex_id"
   end
 
   create_table "recent_hash_tags", force: :cascade do |t|
@@ -118,7 +145,10 @@ ActiveRecord::Schema.define(version: 2018_12_21_152000) do
     t.index ["tweet_text_id"], name: "i_user_mentions_tweet_text_id"
   end
 
+  add_foreign_key "labels", "tweet_texts"
   add_foreign_key "media", "tweet_texts"
+  add_foreign_key "predicted_labels", "classifiers"
+  add_foreign_key "predicted_labels", "tweet_texts"
   add_foreign_key "recent_hash_tags", "hash_tags"
   add_foreign_key "recent_urls", "urls"
   add_foreign_key "tweets_hash_tags", "hash_tags"

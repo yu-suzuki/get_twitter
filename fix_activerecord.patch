@@ -1,0 +1,21 @@
+Index: lib/get_tweet/tweet.rb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/get_tweet/tweet.rb	(revision 0399fdf7100ffd6c6af3361fc2d2c0ee6d722c5e)
++++ lib/get_tweet/tweet.rb	(date 1545750115000)
+@@ -310,10 +310,13 @@
+     if Rails.env.production?
+       case rand(3)
+       when 0
++        p 'key1'
+         api = Rails.application.credentials.twitter_api
+       when 1
++        p 'key2'
+         api = Rails.application.credentials.twitter_dev
+       when 2
++        p 'key3'
+         api = Rails.application.credentials.twitter_sub
+       end
+     end
