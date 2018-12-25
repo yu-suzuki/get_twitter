@@ -44,15 +44,16 @@ module GetTweet::Tweet
       tweets = TweetText.where(reply_check: true).limit(100)
       if tweets.count.positive?
         tweets.each do |t|
-          store_tweet_with_parent(t.in_reply_to_status_id) if t.reply?
-          store_tweet_with_parent(t.retweet_id) if t.retweet?
+          delay.store_tweet_with_parent(t.in_reply_to_status_id) if t.reply?
+          delay.store_tweet_with_parent(t.retweet_id) if t.retweet?
           t.reply_check = false
           t.save
         rescue Twitter::Error::TooManyRequests => error
           weight_time = error.rate_limit.reset_in + 1
           p 'too many requests, sleep ' + weight_time.to_s
-          sleep(weight_time.seconds)
+          #sleep(weight_time.seconds)
         rescue ActiveRecord::RecordNotFound => error
+          p error
           p 'ActiveRecord, RecordNotFound'
         end
       else
@@ -60,7 +61,7 @@ module GetTweet::Tweet
         sleep(5.minutes)
       end
     rescue ActiveRecord::StatementInvalid
-      p 'postgres error, reconnect'
+      p 'database error, reconnect'
       ActiveRecord::Base.connection.reconnect!
     rescue HTTP::ConnectionError
       p 'HTTP error, reconnect'
