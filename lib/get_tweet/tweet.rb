@@ -310,10 +310,13 @@ module GetTweet::Tweet
     if Rails.env.production?
       case rand(3)
       when 0
+        p 'key1'
         api = Rails.application.credentials.twitter_api
       when 1
+        p 'key2'
         api = Rails.application.credentials.twitter_dev
       when 2
+        p 'key3'
         api = Rails.application.credentials.twitter_sub
       end
     end
