@@ -7,13 +7,18 @@ class HomeController < ApplicationController
   end
 
   def insert_tweet
+    require 'csv'
     rest = GetTweet::Tweet.rest
     CSV.foreach(file_params[:file].path, headers: false, encoding: 'utf-8') do |r|
       begin
-        tweet_id = r[1]
+        tweet_id = r[0]
         unless TweetText.exists?(tweet_id)
           t = rest.status(tweet_id)
           GetTweet::Tweet.store_tweet_with_parent(t)
+          tw = TweetText.find(tweet_id)
+          (1..(r.size+1)).each do |i|
+            Label.find_or_create_by(tweet_text: tw, label: r[i]) unless r[i].nil?
+          end
         end
       rescue Twitter::Error::NotFound
         Rails.logger.info("Target Tweet #{tweet_id} Not found")
@@ -23,7 +28,8 @@ class HomeController < ApplicationController
         Rails.logger.info('You have been blocked from the author of this tweet.')
       rescue Twitter::Error::ServiceUnavailable
         Rails.logger.info('Twitter Service Unavailable.')
-      rescue ActiveRecord::StatementInvalid
+      rescue ActiveRecord::StatementInvalid => error
+        p error
         p 'postgres error, reconnect'
         ActiveRecord::Base.connection.reconnect!
       rescue Twitter::Error::TooManyRequests => error
