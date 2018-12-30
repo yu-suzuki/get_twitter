@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_25_162548) do
+ActiveRecord::Schema.define(version: 2018_12_26_091021) do
 
   create_table "classifiers", force: :cascade do |t|
     t.string "name", null: false
@@ -41,11 +41,19 @@ ActiveRecord::Schema.define(version: 2018_12_25_162548) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "labels", force: :cascade do |t|
-    t.integer "tweet_text_id", limit: 19, precision: 19
-    t.string "label", null: false
+  create_table "label_options", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_label_options_on_name"
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.integer "tweet_text_id", limit: 19, precision: 19
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "label_option_id", precision: 38, null: false
+    t.index ["label_option_id"], name: "i_labels_label_option_id"
     t.index ["tweet_text_id"], name: "index_labels_on_tweet_text_id"
   end
 
@@ -65,11 +73,12 @@ ActiveRecord::Schema.define(version: 2018_12_25_162548) do
   create_table "predicted_labels", force: :cascade do |t|
     t.integer "classifier_id", limit: 19, precision: 19
     t.integer "tweet_text_id", limit: 19, precision: 19
-    t.string "label", null: false
     t.float "probability", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "label_option_id", precision: 38, null: false
     t.index ["classifier_id"], name: "i_pre_lab_cla_id"
+    t.index ["label_option_id"], name: "i_pre_lab_lab_opt_id"
     t.index ["tweet_text_id"], name: "i_pre_lab_twe_tex_id"
   end
 

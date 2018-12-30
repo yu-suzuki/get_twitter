@@ -15,9 +15,13 @@ class HomeController < ApplicationController
         unless TweetText.exists?(tweet_id)
           t = rest.status(tweet_id)
           GetTweet::Tweet.store_tweet_with_parent(t)
-          tw = TweetText.find(tweet_id)
-          (1..(r.size+1)).each do |i|
-            Label.find_or_create_by(tweet_text: tw, label: r[i]) unless r[i].nil?
+        end
+        tw = TweetText.find(tweet_id)
+        (1..(r.size + 1)).each do |i|
+          unless r[i].nil?
+            p r[i]
+            label_option = LabelOption.find_or_create_by(name: r[i])
+            Label.find_or_create_by!(tweet_text: tw, label_option: label_option)
           end
         end
       rescue Twitter::Error::NotFound

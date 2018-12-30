@@ -122,8 +122,8 @@
     <schema id="39" parent="1" name="TWITTER_DEVELOPMENT">
       <ObjectId>105</ObjectId>
       <CreatedTimestamp>2018-12-21.17:18:09</CreatedTimestamp>
-      <ModifiedTimestamp>2018-12-26.01:32:21</ModifiedTimestamp>
-      <IntrospectionTimestamp>2018-12-26.02:15:51</IntrospectionTimestamp>
+      <ModifiedTimestamp>2018-12-26.20:16:58</ModifiedTimestamp>
+      <IntrospectionTimestamp>2018-12-26.20:16:59</IntrospectionTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -49366,182 +49366,194 @@
       <ModifiedTimestamp>2018-12-26.00:59:15</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="7077" parent="39" name="MEDIA_SEQ">
+    <sequence id="7077" parent="39" name="LABEL_OPTIONS_SEQ">
+      <ObjectId>74834</ObjectId>
+      <CreatedTimestamp>2018-12-26.18:03:20</CreatedTimestamp>
+      <ModifiedTimestamp>2018-12-26.18:03:20</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="7078" parent="39" name="MEDIA_SEQ">
       <ObjectId>74125</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="7078" parent="39" name="PREDICTED_LABELS_SEQ">
+    <sequence id="7079" parent="39" name="PREDICTED_LABELS_SEQ">
       <ObjectId>74744</ObjectId>
       <CreatedTimestamp>2018-12-26.00:59:15</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-26.00:59:15</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="7079" parent="39" name="RECENT_HASH_TAGS_SEQ">
+    <sequence id="7080" parent="39" name="RECENT_HASH_TAGS_SEQ">
       <ObjectId>74139</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="7080" parent="39" name="RECENT_URLS_SEQ">
+    <sequence id="7081" parent="39" name="RECENT_URLS_SEQ">
       <ObjectId>74143</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="7081" parent="39" name="TWEETS_HASH_TAGS_SEQ">
+    <sequence id="7082" parent="39" name="TWEETS_HASH_TAGS_SEQ">
       <ObjectId>74129</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="7082" parent="39" name="TWEETS_URLS_SEQ">
+    <sequence id="7083" parent="39" name="TWEETS_URLS_SEQ">
       <ObjectId>74134</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="7083" parent="39" name="TWEET_TEXTS_SEQ">
+    <sequence id="7084" parent="39" name="TWEET_TEXTS_SEQ">
       <ObjectId>74102</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:26</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:26</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="7084" parent="39" name="TWEET_USERS_SEQ">
+    <sequence id="7085" parent="39" name="TWEET_USERS_SEQ">
       <ObjectId>74108</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:27</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:27</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="7085" parent="39" name="URLS_SEQ">
+    <sequence id="7086" parent="39" name="URLS_SEQ">
       <ObjectId>74122</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <sequence id="7086" parent="39" name="USER_MENTIONS_SEQ">
+    <sequence id="7087" parent="39" name="USER_MENTIONS_SEQ">
       <ObjectId>74147</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <table id="7087" parent="39" name="AR_INTERNAL_METADATA">
+    <table id="7088" parent="39" name="AR_INTERNAL_METADATA">
       <ObjectId>74098</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:26</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:26</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7088" parent="39" name="CLASSIFIERS">
+    <table id="7089" parent="39" name="CLASSIFIERS">
       <ObjectId>74734</ObjectId>
       <CreatedTimestamp>2018-12-26.00:24:37</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-26.01:32:21</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7089" parent="39" name="DELAYED_JOBS">
+    <table id="7090" parent="39" name="DELAYED_JOBS">
       <ObjectId>74160</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7090" parent="39" name="HASH_TAGS">
+    <table id="7091" parent="39" name="HASH_TAGS">
       <ObjectId>74117</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7091" parent="39" name="LABELS">
+    <table id="7092" parent="39" name="LABELS">
       <ObjectId>74738</ObjectId>
       <CreatedTimestamp>2018-12-26.00:59:15</CreatedTimestamp>
-      <ModifiedTimestamp>2018-12-26.00:59:15</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-12-26.18:03:22</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7092" parent="39" name="MEDIA">
+    <table id="7093" parent="39" name="LABEL_OPTIONS">
+      <ObjectId>74832</ObjectId>
+      <CreatedTimestamp>2018-12-26.18:03:20</CreatedTimestamp>
+      <ModifiedTimestamp>2018-12-26.20:16:58</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="7094" parent="39" name="MEDIA">
       <ObjectId>74123</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7093" parent="39" name="PREDICTED_LABELS">
+    <table id="7095" parent="39" name="PREDICTED_LABELS">
       <ObjectId>74742</ObjectId>
       <CreatedTimestamp>2018-12-26.00:59:15</CreatedTimestamp>
-      <ModifiedTimestamp>2018-12-26.00:59:15</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-12-26.19:41:14</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7094" parent="39" name="RECENT_HASH_TAGS">
+    <table id="7096" parent="39" name="RECENT_HASH_TAGS">
       <ObjectId>74137</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7095" parent="39" name="RECENT_URLS">
+    <table id="7097" parent="39" name="RECENT_URLS">
       <ObjectId>74141</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7096" parent="39" name="SCHEMA_MIGRATIONS">
+    <table id="7098" parent="39" name="SCHEMA_MIGRATIONS">
       <ObjectId>74096</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:26</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:26</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7097" parent="39" name="TWEETS_HASH_TAGS">
+    <table id="7099" parent="39" name="TWEETS_HASH_TAGS">
       <ObjectId>74127</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7098" parent="39" name="TWEETS_URLS">
+    <table id="7100" parent="39" name="TWEETS_URLS">
       <ObjectId>74132</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7099" parent="39" name="TWEET_TEXTS">
+    <table id="7101" parent="39" name="TWEET_TEXTS">
       <ObjectId>74100</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:26</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-22.01:00:55</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7100" parent="39" name="TWEET_USERS">
+    <table id="7102" parent="39" name="TWEET_USERS">
       <ObjectId>74106</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:27</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7101" parent="39" name="URLS">
+    <table id="7103" parent="39" name="URLS">
       <ObjectId>74120</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <table id="7102" parent="39" name="USER_MENTIONS">
+    <table id="7104" parent="39" name="USER_MENTIONS">
       <ObjectId>74145</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
-    <column id="7103" parent="7087" name="KEY">
+    <column id="7105" parent="7088" name="KEY">
       <Position>1</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7104" parent="7087" name="VALUE">
+    <column id="7106" parent="7088" name="VALUE">
       <Position>2</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
     </column>
-    <column id="7105" parent="7087" name="CREATED_AT">
+    <column id="7107" parent="7088" name="CREATED_AT">
       <Position>3</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7106" parent="7087" name="UPDATED_AT">
+    <column id="7108" parent="7088" name="UPDATED_AT">
       <Position>4</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="7107" parent="7087" name="SYS_C008074">
+    <index id="7109" parent="7088" name="SYS_C008074">
       <ObjectId>74099</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:26</CreatedTimestamp>
@@ -49550,7 +49562,7 @@
       <ColNames>KEY</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="7108" parent="7087" name="SYS_C008074">
+    <key id="7110" parent="7088" name="SYS_C008074">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:26</ModifiedTimestamp>
       <ColNames>KEY</ColNames>
@@ -49558,32 +49570,32 @@
       <UnderlyingIndexName>SYS_C008074</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="7109" parent="7088" name="ID">
+    <column id="7111" parent="7089" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7110" parent="7088" name="NAME">
+    <column id="7112" parent="7089" name="NAME">
       <Position>2</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7111" parent="7088" name="CREATED_AT">
+    <column id="7113" parent="7089" name="CREATED_AT">
       <Position>3</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7112" parent="7088" name="UPDATED_AT">
+    <column id="7114" parent="7089" name="UPDATED_AT">
       <Position>4</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7113" parent="7088" name="TYPE">
+    <column id="7115" parent="7089" name="TYPE">
       <Position>5</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="7114" parent="7088" name="SYS_C008829">
+    <index id="7116" parent="7089" name="SYS_C008829">
       <ObjectId>74735</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-26.00:24:37</CreatedTimestamp>
@@ -49592,14 +49604,14 @@
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7115" parent="7088" name="I_CLASSIFIERS_CREATED_AT">
+    <index id="7117" parent="7089" name="I_CLASSIFIERS_CREATED_AT">
       <ObjectId>74737</ObjectId>
       <CreatedTimestamp>2018-12-26.00:24:37</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-26.00:24:37</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>CREATED_AT</ColNames>
     </index>
-    <key id="7116" parent="7088" name="SYS_C008829">
+    <key id="7118" parent="7089" name="SYS_C008829">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-26.00:24:37</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -49607,61 +49619,61 @@
       <UnderlyingIndexName>SYS_C008829</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="7117" parent="7089" name="ID">
+    <column id="7119" parent="7090" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7118" parent="7089" name="PRIORITY">
+    <column id="7120" parent="7090" name="PRIORITY">
       <Position>2</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7119" parent="7089" name="ATTEMPTS">
+    <column id="7121" parent="7090" name="ATTEMPTS">
       <Position>3</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7120" parent="7089" name="HANDLER">
+    <column id="7122" parent="7090" name="HANDLER">
       <Position>4</Position>
       <DataType>CLOB|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7121" parent="7089" name="LAST_ERROR">
+    <column id="7123" parent="7090" name="LAST_ERROR">
       <Position>5</Position>
       <DataType>CLOB|0s</DataType>
     </column>
-    <column id="7122" parent="7089" name="RUN_AT">
+    <column id="7124" parent="7090" name="RUN_AT">
       <Position>6</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
     </column>
-    <column id="7123" parent="7089" name="LOCKED_AT">
+    <column id="7125" parent="7090" name="LOCKED_AT">
       <Position>7</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
     </column>
-    <column id="7124" parent="7089" name="FAILED_AT">
+    <column id="7126" parent="7090" name="FAILED_AT">
       <Position>8</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
     </column>
-    <column id="7125" parent="7089" name="LOCKED_BY">
+    <column id="7127" parent="7090" name="LOCKED_BY">
       <Position>9</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
     </column>
-    <column id="7126" parent="7089" name="QUEUE">
+    <column id="7128" parent="7090" name="QUEUE">
       <Position>10</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
     </column>
-    <column id="7127" parent="7089" name="CREATED_AT">
+    <column id="7129" parent="7090" name="CREATED_AT">
       <Position>11</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
     </column>
-    <column id="7128" parent="7089" name="UPDATED_AT">
+    <column id="7130" parent="7090" name="UPDATED_AT">
       <Position>12</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
     </column>
-    <index id="7129" parent="7089" name="SYS_C008152">
+    <index id="7131" parent="7090" name="SYS_C008152">
       <ObjectId>74165</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
@@ -49670,7 +49682,7 @@
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7130" parent="7089" name="DELAYED_JOBS_PRIORITY">
+    <index id="7132" parent="7090" name="DELAYED_JOBS_PRIORITY">
       <ObjectId>74167</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
@@ -49678,7 +49690,7 @@
       <ColNames>PRIORITY
 RUN_AT</ColNames>
     </index>
-    <key id="7131" parent="7089" name="SYS_C008152">
+    <key id="7133" parent="7090" name="SYS_C008152">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -49686,27 +49698,27 @@ RUN_AT</ColNames>
       <UnderlyingIndexName>SYS_C008152</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="7132" parent="7090" name="ID">
+    <column id="7134" parent="7091" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7133" parent="7090" name="TAG">
+    <column id="7135" parent="7091" name="TAG">
       <Position>2</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7134" parent="7090" name="CREATED_AT">
+    <column id="7136" parent="7091" name="CREATED_AT">
       <Position>3</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7135" parent="7090" name="UPDATED_AT">
+    <column id="7137" parent="7091" name="UPDATED_AT">
       <Position>4</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="7136" parent="7090" name="SYS_C008100">
+    <index id="7138" parent="7091" name="SYS_C008100">
       <ObjectId>74118</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
@@ -49715,7 +49727,7 @@ RUN_AT</ColNames>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="7137" parent="7090" name="SYS_C008100">
+    <key id="7139" parent="7091" name="SYS_C008100">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -49723,31 +49735,30 @@ RUN_AT</ColNames>
       <UnderlyingIndexName>SYS_C008100</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="7138" parent="7091" name="ID">
+    <column id="7140" parent="7092" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7139" parent="7091" name="TWEET_TEXT_ID">
+    <column id="7141" parent="7092" name="TWEET_TEXT_ID">
       <Position>2</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
     </column>
-    <column id="7140" parent="7091" name="LABEL">
+    <column id="7142" parent="7092" name="CREATED_AT">
       <Position>3</Position>
-      <DataType>VARCHAR2(255 char)|0us</DataType>
+      <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7141" parent="7091" name="CREATED_AT">
+    <column id="7143" parent="7092" name="UPDATED_AT">
       <Position>4</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7142" parent="7091" name="UPDATED_AT">
+    <column id="7144" parent="7092" name="LABEL_OPTION_ID">
       <Position>5</Position>
-      <DataType>TIMESTAMP(6)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <index id="7143" parent="7091" name="SYS_C008834">
+    <index id="7145" parent="7092" name="SYS_C008834">
       <ObjectId>74739</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-26.00:59:15</CreatedTimestamp>
@@ -49756,14 +49767,21 @@ RUN_AT</ColNames>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7144" parent="7091" name="INDEX_LABELS_ON_TWEET_TEXT_ID">
+    <index id="7146" parent="7092" name="INDEX_LABELS_ON_TWEET_TEXT_ID">
       <ObjectId>74741</ObjectId>
       <CreatedTimestamp>2018-12-26.00:59:15</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-26.00:59:15</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>TWEET_TEXT_ID</ColNames>
     </index>
-    <key id="7145" parent="7091" name="SYS_C008834">
+    <index id="7147" parent="7092" name="I_LABELS_LABEL_OPTION_ID">
+      <ObjectId>74835</ObjectId>
+      <CreatedTimestamp>2018-12-26.18:03:22</CreatedTimestamp>
+      <ModifiedTimestamp>2018-12-26.18:03:22</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>LABEL_OPTION_ID</ColNames>
+    </index>
+    <key id="7148" parent="7092" name="SYS_C008834">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-26.00:59:15</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -49771,7 +49789,7 @@ RUN_AT</ColNames>
       <UnderlyingIndexName>SYS_C008834</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="7146" parent="7091" name="FK_RAILS_161B132936">
+    <foreign-key id="7149" parent="7092" name="FK_RAILS_161B132936">
       <ModifiedTimestamp>2018-12-26.00:59:15</ModifiedTimestamp>
       <ColNames>TWEET_TEXT_ID</ColNames>
       <RefSchemaName>TWITTER_DEVELOPMENT</RefSchemaName>
@@ -49779,47 +49797,83 @@ RUN_AT</ColNames>
       <RefKeyName>SYS_C008084</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="7147" parent="7092" name="ID">
+    <column id="7150" parent="7093" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7148" parent="7092" name="TWEET_TEXT_ID">
+    <column id="7151" parent="7093" name="NAME">
       <Position>2</Position>
-      <DataType>NUMBER(19 digit)|0s</DataType>
-    </column>
-    <column id="7149" parent="7092" name="FILENAME">
-      <Position>3</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
+    </column>
+    <column id="7152" parent="7093" name="CREATED_AT">
+      <Position>3</Position>
+      <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7150" parent="7092" name="CREATED_AT">
+    <column id="7153" parent="7093" name="UPDATED_AT">
       <Position>4</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7151" parent="7092" name="UPDATED_AT">
+    <index id="7154" parent="7093" name="SYS_C008932">
+      <ObjectId>74833</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-12-26.18:03:20</CreatedTimestamp>
+      <ModifiedTimestamp>2018-12-26.18:03:20</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="7155" parent="7093" name="SYS_C008932">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2018-12-26.18:03:20</ModifiedTimestamp>
+      <ColNames>ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C008932</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="7156" parent="7094" name="ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="7157" parent="7094" name="TWEET_TEXT_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(19 digit)|0s</DataType>
+    </column>
+    <column id="7158" parent="7094" name="FILENAME">
+      <Position>3</Position>
+      <DataType>VARCHAR2(255 char)|0us</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="7159" parent="7094" name="CREATED_AT">
+      <Position>4</Position>
+      <DataType>TIMESTAMP(6)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="7160" parent="7094" name="UPDATED_AT">
       <Position>5</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7152" parent="7092" name="URL">
+    <column id="7161" parent="7094" name="URL">
       <Position>6</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
-    <column id="7153" parent="7092" name="DOWNLOADED">
+    <column id="7162" parent="7094" name="DOWNLOADED">
       <Position>7</Position>
       <DataType>NUMBER(1 digit)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7154" parent="7092" name="SUBDIR">
+    <column id="7163" parent="7094" name="SUBDIR">
       <Position>8</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
     </column>
-    <index id="7155" parent="7092" name="SYS_C008110">
+    <index id="7164" parent="7094" name="SYS_C008110">
       <ObjectId>74124</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
@@ -49828,7 +49882,7 @@ RUN_AT</ColNames>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7156" parent="7092" name="I_MEDIA_TWEET_TEXT_ID_FILENAME">
+    <index id="7165" parent="7094" name="I_MEDIA_TWEET_TEXT_ID_FILENAME">
       <ObjectId>74158</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
@@ -49837,21 +49891,21 @@ RUN_AT</ColNames>
 FILENAME</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7157" parent="7092" name="INDEX_MEDIA_ON_TWEET_TEXT_ID">
+    <index id="7166" parent="7094" name="INDEX_MEDIA_ON_TWEET_TEXT_ID">
       <ObjectId>74126</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>TWEET_TEXT_ID</ColNames>
     </index>
-    <index id="7158" parent="7092" name="INDEX_MEDIA_ON_DOWNLOADED">
+    <index id="7167" parent="7094" name="INDEX_MEDIA_ON_DOWNLOADED">
       <ObjectId>74153</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>DOWNLOADED</ColNames>
     </index>
-    <key id="7159" parent="7092" name="SYS_C008110">
+    <key id="7168" parent="7094" name="SYS_C008110">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -49859,14 +49913,14 @@ FILENAME</ColNames>
       <UnderlyingIndexName>SYS_C008110</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="7160" parent="7092" name="I_MEDIA_TWEET_TEXT_ID_FILENAME">
+    <key id="7169" parent="7094" name="I_MEDIA_TWEET_TEXT_ID_FILENAME">
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <ColNames>TWEET_TEXT_ID
 FILENAME</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>I_MEDIA_TWEET_TEXT_ID_FILENAME</UnderlyingIndexName>
     </key>
-    <foreign-key id="7161" parent="7092" name="FK_RAILS_64842CCF6A">
+    <foreign-key id="7170" parent="7094" name="FK_RAILS_64842CCF6A">
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>TWEET_TEXT_ID</ColNames>
       <RefSchemaName>TWITTER_DEVELOPMENT</RefSchemaName>
@@ -49874,41 +49928,36 @@ FILENAME</ColNames>
       <RefKeyName>SYS_C008084</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="7162" parent="7093" name="ID">
+    <column id="7171" parent="7095" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7163" parent="7093" name="CLASSIFIER_ID">
+    <column id="7172" parent="7095" name="CLASSIFIER_ID">
       <Position>2</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
     </column>
-    <column id="7164" parent="7093" name="TWEET_TEXT_ID">
+    <column id="7173" parent="7095" name="TWEET_TEXT_ID">
       <Position>3</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
     </column>
-    <column id="7165" parent="7093" name="LABEL">
+    <column id="7174" parent="7095" name="PROBABILITY">
       <Position>4</Position>
-      <DataType>VARCHAR2(255 char)|0us</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="7166" parent="7093" name="PROBABILITY">
-      <Position>5</Position>
       <DataType>BINARY_FLOAT|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0.0</DefaultExpression>
     </column>
-    <column id="7167" parent="7093" name="CREATED_AT">
+    <column id="7175" parent="7095" name="CREATED_AT">
+      <Position>5</Position>
+      <DataType>TIMESTAMP(6)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="7176" parent="7095" name="UPDATED_AT">
       <Position>6</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7168" parent="7093" name="UPDATED_AT">
-      <Position>7</Position>
-      <DataType>TIMESTAMP(6)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="7169" parent="7093" name="SYS_C008841">
+    <index id="7177" parent="7095" name="SYS_C008841">
       <ObjectId>74743</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-26.00:59:15</CreatedTimestamp>
@@ -49917,21 +49966,21 @@ FILENAME</ColNames>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7170" parent="7093" name="I_PRE_LAB_CLA_ID">
+    <index id="7178" parent="7095" name="I_PRE_LAB_CLA_ID">
       <ObjectId>74745</ObjectId>
       <CreatedTimestamp>2018-12-26.00:59:15</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-26.00:59:15</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>CLASSIFIER_ID</ColNames>
     </index>
-    <index id="7171" parent="7093" name="I_PRE_LAB_TWE_TEX_ID">
+    <index id="7179" parent="7095" name="I_PRE_LAB_TWE_TEX_ID">
       <ObjectId>74746</ObjectId>
       <CreatedTimestamp>2018-12-26.00:59:15</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-26.00:59:15</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>TWEET_TEXT_ID</ColNames>
     </index>
-    <key id="7172" parent="7093" name="SYS_C008841">
+    <key id="7180" parent="7095" name="SYS_C008841">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-26.00:59:15</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -49939,7 +49988,7 @@ FILENAME</ColNames>
       <UnderlyingIndexName>SYS_C008841</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="7173" parent="7093" name="FK_RAILS_D874F16364">
+    <foreign-key id="7181" parent="7095" name="FK_RAILS_D874F16364">
       <ModifiedTimestamp>2018-12-26.00:59:15</ModifiedTimestamp>
       <ColNames>CLASSIFIER_ID</ColNames>
       <RefSchemaName>TWITTER_DEVELOPMENT</RefSchemaName>
@@ -49947,7 +49996,7 @@ FILENAME</ColNames>
       <RefKeyName>SYS_C008829</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="7174" parent="7093" name="FK_RAILS_6ADDF022EB">
+    <foreign-key id="7182" parent="7095" name="FK_RAILS_6ADDF022EB">
       <ModifiedTimestamp>2018-12-26.00:59:15</ModifiedTimestamp>
       <ColNames>TWEET_TEXT_ID</ColNames>
       <RefSchemaName>TWITTER_DEVELOPMENT</RefSchemaName>
@@ -49955,32 +50004,32 @@ FILENAME</ColNames>
       <RefKeyName>SYS_C008084</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="7175" parent="7094" name="ID">
+    <column id="7183" parent="7096" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7176" parent="7094" name="HASH_TAG_ID">
+    <column id="7184" parent="7096" name="HASH_TAG_ID">
       <Position>2</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
     </column>
-    <column id="7177" parent="7094" name="COUNT">
+    <column id="7185" parent="7096" name="COUNT">
       <Position>3</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7178" parent="7094" name="CREATED_AT">
+    <column id="7186" parent="7096" name="CREATED_AT">
       <Position>4</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7179" parent="7094" name="UPDATED_AT">
+    <column id="7187" parent="7096" name="UPDATED_AT">
       <Position>5</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="7180" parent="7094" name="SYS_C008128">
+    <index id="7188" parent="7096" name="SYS_C008128">
       <ObjectId>74138</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
@@ -49989,14 +50038,14 @@ FILENAME</ColNames>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7181" parent="7094" name="I_RECENT_HASH_TAGS_HASH_TAG_ID">
+    <index id="7189" parent="7096" name="I_RECENT_HASH_TAGS_HASH_TAG_ID">
       <ObjectId>74140</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>HASH_TAG_ID</ColNames>
     </index>
-    <key id="7182" parent="7094" name="SYS_C008128">
+    <key id="7190" parent="7096" name="SYS_C008128">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -50004,7 +50053,7 @@ FILENAME</ColNames>
       <UnderlyingIndexName>SYS_C008128</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="7183" parent="7094" name="FK_RAILS_A76CE7E18D">
+    <foreign-key id="7191" parent="7096" name="FK_RAILS_A76CE7E18D">
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>HASH_TAG_ID</ColNames>
       <RefSchemaName>TWITTER_DEVELOPMENT</RefSchemaName>
@@ -50012,32 +50061,32 @@ FILENAME</ColNames>
       <RefKeyName>SYS_C008100</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="7184" parent="7095" name="ID">
+    <column id="7192" parent="7097" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7185" parent="7095" name="URL_ID">
+    <column id="7193" parent="7097" name="URL_ID">
       <Position>2</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
     </column>
-    <column id="7186" parent="7095" name="COUNT">
+    <column id="7194" parent="7097" name="COUNT">
       <Position>3</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7187" parent="7095" name="CREATED_AT">
+    <column id="7195" parent="7097" name="CREATED_AT">
       <Position>4</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7188" parent="7095" name="UPDATED_AT">
+    <column id="7196" parent="7097" name="UPDATED_AT">
       <Position>5</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="7189" parent="7095" name="SYS_C008134">
+    <index id="7197" parent="7097" name="SYS_C008134">
       <ObjectId>74142</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
@@ -50046,14 +50095,14 @@ FILENAME</ColNames>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7190" parent="7095" name="INDEX_RECENT_URLS_ON_URL_ID">
+    <index id="7198" parent="7097" name="INDEX_RECENT_URLS_ON_URL_ID">
       <ObjectId>74144</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>URL_ID</ColNames>
     </index>
-    <key id="7191" parent="7095" name="SYS_C008134">
+    <key id="7199" parent="7097" name="SYS_C008134">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -50061,7 +50110,7 @@ FILENAME</ColNames>
       <UnderlyingIndexName>SYS_C008134</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="7192" parent="7095" name="FK_RAILS_EBC3B61D94">
+    <foreign-key id="7200" parent="7097" name="FK_RAILS_EBC3B61D94">
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>URL_ID</ColNames>
       <RefSchemaName>TWITTER_DEVELOPMENT</RefSchemaName>
@@ -50069,12 +50118,12 @@ FILENAME</ColNames>
       <RefKeyName>SYS_C008105</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="7193" parent="7096" name="VERSION">
+    <column id="7201" parent="7098" name="VERSION">
       <Position>1</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="7194" parent="7096" name="SYS_C008070">
+    <index id="7202" parent="7098" name="SYS_C008070">
       <ObjectId>74097</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:26</CreatedTimestamp>
@@ -50083,7 +50132,7 @@ FILENAME</ColNames>
       <ColNames>VERSION</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="7195" parent="7096" name="SYS_C008070">
+    <key id="7203" parent="7098" name="SYS_C008070">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:26</ModifiedTimestamp>
       <ColNames>VERSION</ColNames>
@@ -50091,30 +50140,30 @@ FILENAME</ColNames>
       <UnderlyingIndexName>SYS_C008070</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="7196" parent="7097" name="ID">
+    <column id="7204" parent="7099" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7197" parent="7097" name="HASH_TAG_ID">
+    <column id="7205" parent="7099" name="HASH_TAG_ID">
       <Position>2</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
     </column>
-    <column id="7198" parent="7097" name="TWEET_TEXT_ID">
+    <column id="7206" parent="7099" name="TWEET_TEXT_ID">
       <Position>3</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
     </column>
-    <column id="7199" parent="7097" name="CREATED_AT">
+    <column id="7207" parent="7099" name="CREATED_AT">
       <Position>4</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7200" parent="7097" name="UPDATED_AT">
+    <column id="7208" parent="7099" name="UPDATED_AT">
       <Position>5</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="7201" parent="7097" name="SYS_C008115">
+    <index id="7209" parent="7099" name="SYS_C008115">
       <ObjectId>74128</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
@@ -50123,7 +50172,7 @@ FILENAME</ColNames>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7202" parent="7097" name="I3CE6A75E51D808DAB083D2BEC1BEE">
+    <index id="7210" parent="7099" name="I3CE6A75E51D808DAB083D2BEC1BEE">
       <ObjectId>74157</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
@@ -50132,21 +50181,21 @@ FILENAME</ColNames>
 HASH_TAG_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7203" parent="7097" name="I_TWEETS_HASH_TAGS_HASH_TAG_ID">
+    <index id="7211" parent="7099" name="I_TWEETS_HASH_TAGS_HASH_TAG_ID">
       <ObjectId>74130</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>HASH_TAG_ID</ColNames>
     </index>
-    <index id="7204" parent="7097" name="I_TWE_HAS_TAG_TWE_TEX_ID">
+    <index id="7212" parent="7099" name="I_TWE_HAS_TAG_TWE_TEX_ID">
       <ObjectId>74131</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>TWEET_TEXT_ID</ColNames>
     </index>
-    <key id="7205" parent="7097" name="SYS_C008115">
+    <key id="7213" parent="7099" name="SYS_C008115">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -50154,14 +50203,14 @@ HASH_TAG_ID</ColNames>
       <UnderlyingIndexName>SYS_C008115</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="7206" parent="7097" name="I3CE6A75E51D808DAB083D2BEC1BEE">
+    <key id="7214" parent="7099" name="I3CE6A75E51D808DAB083D2BEC1BEE">
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <ColNames>TWEET_TEXT_ID
 HASH_TAG_ID</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>I3CE6A75E51D808DAB083D2BEC1BEE</UnderlyingIndexName>
     </key>
-    <foreign-key id="7207" parent="7097" name="FK_RAILS_4C87345CDB">
+    <foreign-key id="7215" parent="7099" name="FK_RAILS_4C87345CDB">
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>HASH_TAG_ID</ColNames>
       <RefSchemaName>TWITTER_DEVELOPMENT</RefSchemaName>
@@ -50169,7 +50218,7 @@ HASH_TAG_ID</ColNames>
       <RefKeyName>SYS_C008100</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="7208" parent="7097" name="FK_RAILS_292ADE6847">
+    <foreign-key id="7216" parent="7099" name="FK_RAILS_292ADE6847">
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>TWEET_TEXT_ID</ColNames>
       <RefSchemaName>TWITTER_DEVELOPMENT</RefSchemaName>
@@ -50177,30 +50226,30 @@ HASH_TAG_ID</ColNames>
       <RefKeyName>SYS_C008084</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="7209" parent="7098" name="ID">
+    <column id="7217" parent="7100" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7210" parent="7098" name="TWEET_TEXT_ID">
+    <column id="7218" parent="7100" name="TWEET_TEXT_ID">
       <Position>2</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
     </column>
-    <column id="7211" parent="7098" name="URL_ID">
+    <column id="7219" parent="7100" name="URL_ID">
       <Position>3</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
     </column>
-    <column id="7212" parent="7098" name="CREATED_AT">
+    <column id="7220" parent="7100" name="CREATED_AT">
       <Position>4</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7213" parent="7098" name="UPDATED_AT">
+    <column id="7221" parent="7100" name="UPDATED_AT">
       <Position>5</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="7214" parent="7098" name="SYS_C008121">
+    <index id="7222" parent="7100" name="SYS_C008121">
       <ObjectId>74133</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
@@ -50209,7 +50258,7 @@ HASH_TAG_ID</ColNames>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7215" parent="7098" name="I_TWE_URL_TWE_TEX_ID_URL_ID">
+    <index id="7223" parent="7100" name="I_TWE_URL_TWE_TEX_ID_URL_ID">
       <ObjectId>74156</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
@@ -50218,21 +50267,21 @@ HASH_TAG_ID</ColNames>
 URL_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7216" parent="7098" name="I_TWEETS_URLS_TWEET_TEXT_ID">
+    <index id="7224" parent="7100" name="I_TWEETS_URLS_TWEET_TEXT_ID">
       <ObjectId>74135</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>TWEET_TEXT_ID</ColNames>
     </index>
-    <index id="7217" parent="7098" name="INDEX_TWEETS_URLS_ON_URL_ID">
+    <index id="7225" parent="7100" name="INDEX_TWEETS_URLS_ON_URL_ID">
       <ObjectId>74136</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>URL_ID</ColNames>
     </index>
-    <key id="7218" parent="7098" name="SYS_C008121">
+    <key id="7226" parent="7100" name="SYS_C008121">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -50240,14 +50289,14 @@ URL_ID</ColNames>
       <UnderlyingIndexName>SYS_C008121</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="7219" parent="7098" name="I_TWE_URL_TWE_TEX_ID_URL_ID">
+    <key id="7227" parent="7100" name="I_TWE_URL_TWE_TEX_ID_URL_ID">
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <ColNames>TWEET_TEXT_ID
 URL_ID</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>I_TWE_URL_TWE_TEX_ID_URL_ID</UnderlyingIndexName>
     </key>
-    <foreign-key id="7220" parent="7098" name="FK_RAILS_0855A944D0">
+    <foreign-key id="7228" parent="7100" name="FK_RAILS_0855A944D0">
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>TWEET_TEXT_ID</ColNames>
       <RefSchemaName>TWITTER_DEVELOPMENT</RefSchemaName>
@@ -50255,7 +50304,7 @@ URL_ID</ColNames>
       <RefKeyName>SYS_C008084</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="7221" parent="7098" name="FK_RAILS_0611608B56">
+    <foreign-key id="7229" parent="7100" name="FK_RAILS_0611608B56">
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>URL_ID</ColNames>
       <RefSchemaName>TWITTER_DEVELOPMENT</RefSchemaName>
@@ -50263,107 +50312,107 @@ URL_ID</ColNames>
       <RefKeyName>SYS_C008105</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="7222" parent="7099" name="ID">
+    <column id="7230" parent="7101" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7223" parent="7099" name="FAVORITE_COUNT">
+    <column id="7231" parent="7101" name="FAVORITE_COUNT">
       <Position>2</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7224" parent="7099" name="IN_REPLY_TO_SCREEN_NAME">
+    <column id="7232" parent="7101" name="IN_REPLY_TO_SCREEN_NAME">
       <Position>3</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
       <DefaultExpression>NULL</DefaultExpression>
     </column>
-    <column id="7225" parent="7099" name="IN_REPLY_TO_STATUS_ID">
+    <column id="7233" parent="7101" name="IN_REPLY_TO_STATUS_ID">
       <Position>4</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
       <DefaultExpression>NULL</DefaultExpression>
     </column>
-    <column id="7226" parent="7099" name="IN_REPLY_TO_USER_ID">
+    <column id="7234" parent="7101" name="IN_REPLY_TO_USER_ID">
       <Position>5</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
       <DefaultExpression>NULL</DefaultExpression>
     </column>
-    <column id="7227" parent="7099" name="LANG">
+    <column id="7235" parent="7101" name="LANG">
       <Position>6</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7228" parent="7099" name="RETWEET_COUNT">
+    <column id="7236" parent="7101" name="RETWEET_COUNT">
       <Position>7</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7229" parent="7099" name="SOURCE">
+    <column id="7237" parent="7101" name="SOURCE">
       <Position>8</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
       <DefaultExpression>NULL</DefaultExpression>
     </column>
-    <column id="7230" parent="7099" name="TEXT">
+    <column id="7238" parent="7101" name="TEXT">
       <Position>9</Position>
       <DataType>VARCHAR2(4000 char)|0us</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7231" parent="7099" name="CREATED_AT">
+    <column id="7239" parent="7101" name="CREATED_AT">
       <Position>10</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7232" parent="7099" name="UPDATED_AT">
+    <column id="7240" parent="7101" name="UPDATED_AT">
       <Position>11</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7233" parent="7099" name="TWEET_USER_ID">
+    <column id="7241" parent="7101" name="TWEET_USER_ID">
       <Position>12</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="7234" parent="7099" name="REPLY_CHECK">
+    <column id="7242" parent="7101" name="REPLY_CHECK">
       <Position>13</Position>
       <DataType>NUMBER(1 digit)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7235" parent="7099" name="DELETED">
+    <column id="7243" parent="7101" name="DELETED">
       <Position>14</Position>
       <DataType>NUMBER(1 digit)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7236" parent="7099" name="RETWEET">
+    <column id="7244" parent="7101" name="RETWEET">
       <Position>15</Position>
       <DataType>NUMBER(1 digit)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7237" parent="7099" name="REPLY">
+    <column id="7245" parent="7101" name="REPLY">
       <Position>16</Position>
       <DataType>NUMBER(1 digit)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7238" parent="7099" name="POSITION">
+    <column id="7246" parent="7101" name="POSITION">
       <Position>17</Position>
       <DataType>SDO_GEOMETRY|0cs</DataType>
     </column>
-    <column id="7239" parent="7099" name="RETWEET_ID">
+    <column id="7247" parent="7101" name="RETWEET_ID">
       <Position>18</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
     </column>
-    <column id="7240" parent="7099" name="LATITUDE">
+    <column id="7248" parent="7101" name="LATITUDE">
       <Position>19</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="7241" parent="7099" name="LONGITUDE">
+    <column id="7249" parent="7101" name="LONGITUDE">
       <Position>20</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <index id="7242" parent="7099" name="SYS_C008084">
+    <index id="7250" parent="7101" name="SYS_C008084">
       <ObjectId>74101</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:26</CreatedTimestamp>
@@ -50372,56 +50421,56 @@ URL_ID</ColNames>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7243" parent="7099" name="I_TWE_TEX_IN_REP_TO_STA_ID">
+    <index id="7251" parent="7101" name="I_TWE_TEX_IN_REP_TO_STA_ID">
       <ObjectId>74104</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:27</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:27</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>IN_REPLY_TO_STATUS_ID</ColNames>
     </index>
-    <index id="7244" parent="7099" name="I_TWE_TEX_IN_REP_TO_USE_ID">
+    <index id="7252" parent="7101" name="I_TWE_TEX_IN_REP_TO_USE_ID">
       <ObjectId>74105</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:27</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:27</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>IN_REPLY_TO_USER_ID</ColNames>
     </index>
-    <index id="7245" parent="7099" name="I_TWEET_TEXTS_CREATED_AT">
+    <index id="7253" parent="7101" name="I_TWEET_TEXTS_CREATED_AT">
       <ObjectId>74154</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>CREATED_AT</ColNames>
     </index>
-    <index id="7246" parent="7099" name="I_TWEET_TEXTS_UPDATED_AT">
+    <index id="7254" parent="7101" name="I_TWEET_TEXTS_UPDATED_AT">
       <ObjectId>74155</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>UPDATED_AT</ColNames>
     </index>
-    <index id="7247" parent="7099" name="I_TWEET_TEXTS_TWEET_USER_ID">
+    <index id="7255" parent="7101" name="I_TWEET_TEXTS_TWEET_USER_ID">
       <ObjectId>74110</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:27</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:27</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>TWEET_USER_ID</ColNames>
     </index>
-    <index id="7248" parent="7099" name="I_TWEET_TEXTS_REPLY_CHECK">
+    <index id="7256" parent="7101" name="I_TWEET_TEXTS_REPLY_CHECK">
       <ObjectId>74111</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:27</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:27</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>REPLY_CHECK</ColNames>
     </index>
-    <index id="7249" parent="7099" name="INDEX_TWEET_TEXTS_ON_DELETED">
+    <index id="7257" parent="7101" name="INDEX_TWEET_TEXTS_ON_DELETED">
       <ObjectId>74152</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>DELETED</ColNames>
     </index>
-    <index id="7250" parent="7099" name="I_TWEET_TEXTS_RETWEET_REPLY">
+    <index id="7258" parent="7101" name="I_TWEET_TEXTS_RETWEET_REPLY">
       <ObjectId>74151</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
@@ -50429,21 +50478,21 @@ URL_ID</ColNames>
       <ColNames>RETWEET
 REPLY</ColNames>
     </index>
-    <index id="7251" parent="7099" name="INDEX_TWEET_TEXTS_ON_RETWEET">
+    <index id="7259" parent="7101" name="INDEX_TWEET_TEXTS_ON_RETWEET">
       <ObjectId>74149</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>RETWEET</ColNames>
     </index>
-    <index id="7252" parent="7099" name="INDEX_TWEET_TEXTS_ON_REPLY">
+    <index id="7260" parent="7101" name="INDEX_TWEET_TEXTS_ON_REPLY">
       <ObjectId>74150</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>REPLY</ColNames>
     </index>
-    <key id="7253" parent="7099" name="SYS_C008084">
+    <key id="7261" parent="7101" name="SYS_C008084">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:26</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -50451,76 +50500,76 @@ REPLY</ColNames>
       <UnderlyingIndexName>SYS_C008084</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="7254" parent="7100" name="ID">
+    <column id="7262" parent="7102" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7255" parent="7100" name="NAME">
+    <column id="7263" parent="7102" name="NAME">
       <Position>2</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
     </column>
-    <column id="7256" parent="7100" name="SCREEN_NAME">
+    <column id="7264" parent="7102" name="SCREEN_NAME">
       <Position>3</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
     </column>
-    <column id="7257" parent="7100" name="LOCATION">
+    <column id="7265" parent="7102" name="LOCATION">
       <Position>4</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
     </column>
-    <column id="7258" parent="7100" name="URL">
+    <column id="7266" parent="7102" name="URL">
       <Position>5</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
     </column>
-    <column id="7259" parent="7100" name="DESCRIPTION">
+    <column id="7267" parent="7102" name="DESCRIPTION">
       <Position>6</Position>
       <DataType>VARCHAR2(4000 char)|0us</DataType>
     </column>
-    <column id="7260" parent="7100" name="VERIFIED">
+    <column id="7268" parent="7102" name="VERIFIED">
       <Position>7</Position>
       <DataType>NUMBER(1 digit)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7261" parent="7100" name="FOLLOWERS_COUNT">
+    <column id="7269" parent="7102" name="FOLLOWERS_COUNT">
       <Position>8</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="7262" parent="7100" name="FRIENDS_COUNT">
+    <column id="7270" parent="7102" name="FRIENDS_COUNT">
       <Position>9</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="7263" parent="7100" name="LISTED_COUNT">
+    <column id="7271" parent="7102" name="LISTED_COUNT">
       <Position>10</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="7264" parent="7100" name="TIME_ZONE">
+    <column id="7272" parent="7102" name="TIME_ZONE">
       <Position>11</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
     </column>
-    <column id="7265" parent="7100" name="LANG">
+    <column id="7273" parent="7102" name="LANG">
       <Position>12</Position>
       <DataType>VARCHAR2(255 char)|0us</DataType>
     </column>
-    <column id="7266" parent="7100" name="STATUSES_COUNT">
+    <column id="7274" parent="7102" name="STATUSES_COUNT">
       <Position>13</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="7267" parent="7100" name="UTC_OFFSET">
+    <column id="7275" parent="7102" name="UTC_OFFSET">
       <Position>14</Position>
       <DataType>NUMBER(*)|0s</DataType>
     </column>
-    <column id="7268" parent="7100" name="CREATED_AT">
+    <column id="7276" parent="7102" name="CREATED_AT">
       <Position>15</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7269" parent="7100" name="UPDATED_AT">
+    <column id="7277" parent="7102" name="UPDATED_AT">
       <Position>16</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="7270" parent="7100" name="SYS_C008091">
+    <index id="7278" parent="7102" name="SYS_C008091">
       <ObjectId>74107</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:27</CreatedTimestamp>
@@ -50529,7 +50578,7 @@ REPLY</ColNames>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="7271" parent="7100" name="SYS_C008091">
+    <key id="7279" parent="7102" name="SYS_C008091">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:27</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -50537,27 +50586,27 @@ REPLY</ColNames>
       <UnderlyingIndexName>SYS_C008091</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="7272" parent="7101" name="ID">
+    <column id="7280" parent="7103" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7273" parent="7101" name="URL">
+    <column id="7281" parent="7103" name="URL">
       <Position>2</Position>
       <DataType>VARCHAR2(4000 char)|0us</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7274" parent="7101" name="CREATED_AT">
+    <column id="7282" parent="7103" name="CREATED_AT">
       <Position>3</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7275" parent="7101" name="UPDATED_AT">
+    <column id="7283" parent="7103" name="UPDATED_AT">
       <Position>4</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="7276" parent="7101" name="SYS_C008105">
+    <index id="7284" parent="7103" name="SYS_C008105">
       <ObjectId>74121</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
@@ -50566,7 +50615,7 @@ REPLY</ColNames>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="7277" parent="7101" name="SYS_C008105">
+    <key id="7285" parent="7103" name="SYS_C008105">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -50574,32 +50623,32 @@ REPLY</ColNames>
       <UnderlyingIndexName>SYS_C008105</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="7278" parent="7102" name="ID">
+    <column id="7286" parent="7104" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7279" parent="7102" name="TWEET_TEXT_ID">
+    <column id="7287" parent="7104" name="TWEET_TEXT_ID">
       <Position>2</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
     </column>
-    <column id="7280" parent="7102" name="TWEET_USER_ID">
+    <column id="7288" parent="7104" name="TWEET_USER_ID">
       <Position>3</Position>
       <DataType>NUMBER(19 digit)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="7281" parent="7102" name="CREATED_AT">
+    <column id="7289" parent="7104" name="CREATED_AT">
       <Position>4</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="7282" parent="7102" name="UPDATED_AT">
+    <column id="7290" parent="7104" name="UPDATED_AT">
       <Position>5</Position>
       <DataType>TIMESTAMP(6)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="7283" parent="7102" name="SYS_C008141">
+    <index id="7291" parent="7104" name="SYS_C008141">
       <ObjectId>74146</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
@@ -50608,7 +50657,7 @@ REPLY</ColNames>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7284" parent="7102" name="IBF4B918AF69CE4B9C83F87A7D11A3">
+    <index id="7292" parent="7104" name="IBF4B918AF69CE4B9C83F87A7D11A3">
       <ObjectId>74159</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:30</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
@@ -50617,14 +50666,14 @@ REPLY</ColNames>
 TWEET_USER_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="7285" parent="7102" name="I_USER_MENTIONS_TWEET_TEXT_ID">
+    <index id="7293" parent="7104" name="I_USER_MENTIONS_TWEET_TEXT_ID">
       <ObjectId>74148</ObjectId>
       <CreatedTimestamp>2018-12-21.23:24:29</CreatedTimestamp>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <TablespaceName>USERS</TablespaceName>
       <ColNames>TWEET_TEXT_ID</ColNames>
     </index>
-    <key id="7286" parent="7102" name="SYS_C008141">
+    <key id="7294" parent="7104" name="SYS_C008141">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -50632,14 +50681,14 @@ TWEET_USER_ID</ColNames>
       <UnderlyingIndexName>SYS_C008141</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="7287" parent="7102" name="IBF4B918AF69CE4B9C83F87A7D11A3">
+    <key id="7295" parent="7104" name="IBF4B918AF69CE4B9C83F87A7D11A3">
       <ModifiedTimestamp>2018-12-21.23:24:30</ModifiedTimestamp>
       <ColNames>TWEET_TEXT_ID
 TWEET_USER_ID</ColNames>
       <InitiallyDeferred>1</InitiallyDeferred>
       <UnderlyingIndexName>IBF4B918AF69CE4B9C83F87A7D11A3</UnderlyingIndexName>
     </key>
-    <foreign-key id="7288" parent="7102" name="FK_RAILS_B501B9E7AA">
+    <foreign-key id="7296" parent="7104" name="FK_RAILS_B501B9E7AA">
       <ModifiedTimestamp>2018-12-21.23:24:29</ModifiedTimestamp>
       <ColNames>TWEET_TEXT_ID</ColNames>
       <RefSchemaName>TWITTER_DEVELOPMENT</RefSchemaName>

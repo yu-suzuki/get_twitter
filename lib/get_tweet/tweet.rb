@@ -7,11 +7,12 @@ module GetTweet::Tweet
 
   def batch
     Rails.application.eager_load!
-    streaming.sample do |t|
-      #Thread.new do
-      delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-      delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
-        #end
+    begin
+      streaming.sample do |t|
+        #Thread.new do
+        delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+        delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+      end
     rescue EOFError
       p 'EOF error, reconnect'
       sleep(1.minutes)
