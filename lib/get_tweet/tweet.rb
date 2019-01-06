@@ -27,9 +27,11 @@ module GetTweet::Tweet
       sleep(1.minutes)
       retry
     rescue ActiveRecord::ConnectionTimeoutError
-      p 'postgres connection time out'
+      p 'Oracle connection time out'
+      retry
     rescue Errno::ECONNRESET
       p 'connection reset'
+      retry
     rescue HTTP::ConnectionError
       p 'HTTP error, reconnect'
       sleep(1.minute)
