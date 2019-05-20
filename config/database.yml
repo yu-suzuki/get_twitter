@@ -15,14 +15,13 @@
 # gem 'pg'
 #
 default: &default
-  adapter: oracle_enhanced
+  adapter: postgis
 
   #encoding: unicode
 
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 150 } %>
-  database: localhost:1521/ORCLPDB1
   reconnect: true
   #postgis_extension: postgis      # default is postgis
   #postgis_schema: public          # default is public
@@ -30,8 +29,10 @@ default: &default
 
 development:
   <<: *default
-  username: twitter_development
-  password: twitter_development
+  database: get_twitter_development
+  username: get_twitter_development
+  password: get_twitter_development
+  host: localhost
 
 
   # The specified database role being used to connect to postgres.

@@ -1,14 +1,16 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 # Use postgresql as the database for Active Record
 #gem 'pg', '>= 0.18', '< 2.0'
-gem 'activerecord-oracle_enhanced-adapter'
-gem 'ruby-oci8' # only for CRuby users
+#gem 'activerecord-oracle_enhanced-adapter'
+#gem 'ruby-oci8' # only for CRuby users
+gem 'pg'
+gem 'activerecord-postgis-adapter'
 
 # Use Puma as the app server
 gem 'puma'

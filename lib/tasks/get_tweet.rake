@@ -16,5 +16,8 @@ namespace :get_tweet do
     GetTweet::Tweet.media
   end
 
+  task count: :environment do
+    GetTweet::Tweet.count
+  end
 
 end

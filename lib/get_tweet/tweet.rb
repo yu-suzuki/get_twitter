@@ -5,6 +5,20 @@ require 'twitter'
 module GetTweet::Tweet
   module_function
 
+  def count
+    # count Twitter
+    count_tweet
+
+
+
+  end
+
+  def count_tweet
+    tc = Parameter.find_or_create_by(key: 'twitter_count')
+    tc.value_int = TweetText.all.count
+    tc.save
+  end
+
   def batch
     Rails.application.eager_load!
     begin
