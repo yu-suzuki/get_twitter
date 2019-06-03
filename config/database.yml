@@ -30,8 +30,8 @@ default: &default
 development:
   <<: *default
   database: get_twitter_development
-  username: get_twitter_development
-  password: get_twitter_development
+  username: get_twitter
+  password: get_twitter
   host: localhost
 
 

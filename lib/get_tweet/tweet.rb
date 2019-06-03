@@ -10,7 +10,6 @@ module GetTweet::Tweet
     count_tweet
 
 
-
   end
 
   def count_tweet
@@ -23,7 +22,6 @@ module GetTweet::Tweet
     Rails.application.eager_load!
     begin
       streaming.sample do |t|
-        #Thread.new do
         delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
         delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
       end
@@ -290,27 +288,9 @@ module GetTweet::Tweet
 
 
   def streaming
-    key_labels = ['twitter_api', 'twitter_dev', 'twitter_sub']
-    key_labels_test = ['twitter_sub2', 'twitter_sub3']
 
-    api = nil
+    api = Rails.application.credentials.twitter_api
 
-    if Rails.env.production?
-      case rand(3)
-      when 0
-        p 'key1'
-        api = Rails.application.credentials.twitter_api
-      when 1
-        p 'key2'
-        api = Rails.application.credentials.twitter_dev
-      when 2
-        p 'key3'
-        api = Rails.application.credentials.twitter_sub
-      end
-    end
-
-    api = Rails.application.credentials.twitter_sub if Rails.env.test?
-    api = Rails.application.credentials.twitter_sub if Rails.env.development?
 
     Twitter::Streaming::Client.new do |config|
       config.consumer_key = api[:consumer_key]
@@ -325,17 +305,7 @@ module GetTweet::Tweet
     api = nil
 
     if Rails.env.production?
-      case rand(3)
-      when 0
-        p 'key1'
-        api = Rails.application.credentials.twitter_api
-      when 1
-        p 'key2'
-        api = Rails.application.credentials.twitter_dev
-      when 2
-        p 'key3'
-        api = Rails.application.credentials.twitter_sub
-      end
+      api = Rails.application.credentials.twitter_api
     end
 
     api = Rails.application.credentials.twitter_api if Rails.env.test?
