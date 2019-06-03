@@ -22,7 +22,7 @@ module GetTweet::Tweet
     Rails.application.eager_load!
     begin
       streaming.sample do |t|
-        store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+        delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
         delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
       end
     rescue EOFError
@@ -196,15 +196,13 @@ module GetTweet::Tweet
 
       if t.geo.present?
         p t.geo.coordinates[0], t.geo.coordinates[1], t.id
-
         factory = RGeo::Geographic.spherical_factory(srid: 4326)
         tweet.position = factory.point(t.geo.coordinates[1], t.geo.coordinates[0])
         #tweet.position = "MDSYS.ST_GEOMETRY(SDO_GEOMETRY(2001, 8307, SDO_POINT_TYPE(#{t.geo.coordinates[0]}, #{t.geo.coordinates[1]},NULL),NULL,NULL))"
         #tweet.position = "POINT(#{t.geo.coordinates[0]} #{t.geo.coordinates[1]})" if t.geo.present?
         #tweet.insert_position(t.geo.coordinates[0], t.geo.coordinates[1])
-        tweet.save!
       end
-
+      tweet.save!
 
 
       t.hashtags.each do |h|
