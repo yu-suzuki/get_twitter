@@ -91,9 +91,8 @@ test:
 #
 production:
   <<: *default
-  database: vm3:1521/ORCLPDB1
-  statement_limit: 1500
-  username: twitter_production
-  password: twitter_production
+  database: get_twitter
+  username: get_twitter
+  password: get_twitter
   #username: twitter
   #password: <%= ENV['GET_TWITTER_DATABASE_PASSWORD'] %>
