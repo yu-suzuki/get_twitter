@@ -94,5 +94,6 @@ production:
   database: get_twitter
   username: get_twitter
   password: get_twitter
+  host: hikari
   #username: twitter
   #password: <%= ENV['GET_TWITTER_DATABASE_PASSWORD'] %>
