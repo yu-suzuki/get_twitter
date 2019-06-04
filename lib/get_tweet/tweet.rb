@@ -49,11 +49,11 @@ module GetTweet::Tweet
 
       follower_ids.each do |from_id|
         from_user = TweetUser.find(from_id)
-        delay.Follow.find_or_create_by(from_user: from_user, to_user: user)
+        delay.save_follow(from_user, user)
       end
       friend_ids.each do |to_id|
         to_user = TweetUser.find(to_id)
-        delay.Follow.find_or_create_by(from_user: user, to_user: to_user)
+        delay.save_follow(user, to_user)
       end
 
       user.updated_at = DateTime.now
@@ -61,6 +61,10 @@ module GetTweet::Tweet
     end
     p 'done'
 
+  end
+
+  def save_follow(from_user,to_user)
+    Follow.find_or_create_by(from_user: from_user, to_user: to_user)
   end
 
   def get_user_info(uid_list)
