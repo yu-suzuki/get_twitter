@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_user_id: one
+  to_user_id: one
+
+two:
+  from_user_id: two
+  to_user_id: two

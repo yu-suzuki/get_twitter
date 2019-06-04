@@ -20,4 +20,8 @@ namespace :get_tweet do
     GetTweet::Tweet.count
   end
 
+  task follower: :environment do
+    GetTweet::Tweet.follower
+  end
+
 end

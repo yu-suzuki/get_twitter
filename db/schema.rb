@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_064820) do
+ActiveRecord::Schema.define(version: 2019_06_04_081127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 2019_06_03_064820) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.bigint "from_user_id"
+    t.bigint "to_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_user_id", "to_user_id"], name: "index_follows_on_from_user_id_and_to_user_id", unique: true
+    t.index ["from_user_id"], name: "index_follows_on_from_user_id"
+    t.index ["to_user_id"], name: "index_follows_on_to_user_id"
   end
 
   create_table "hash_tags", force: :cascade do |t|
@@ -191,6 +201,8 @@ ActiveRecord::Schema.define(version: 2019_06_03_064820) do
     t.index ["tweet_text_id"], name: "index_user_mentions_on_tweet_text_id"
   end
 
+  add_foreign_key "follows", "tweet_users", column: "from_user_id"
+  add_foreign_key "follows", "tweet_users", column: "to_user_id"
   add_foreign_key "labels", "tweet_texts"
   add_foreign_key "media", "tweet_texts"
   add_foreign_key "predicted_labels", "classifiers"
