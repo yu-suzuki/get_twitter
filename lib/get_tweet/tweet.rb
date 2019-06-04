@@ -8,8 +8,84 @@ module GetTweet::Tweet
   def count
     # count Twitter
     count_tweet
+  end
 
+  def follower
+    loop do
+      user = TweetUser.order(:updated_at).first
+      p user.id
+      cursor = -1
+      follower_ids = Array.new
+      friend_ids = Array.new
 
+      loop do
+        followers = rest.follower_ids(user.id, {cursor: cursor})
+        followers.attrs[:ids].each do |u_id|
+          follower_ids << u_id
+        end
+        cursor = followers.attrs[:next_cursor]
+        break if cursor.zero?
+      rescue Twitter::Error::TooManyRequests => error
+        weight_time = error.rate_limit.reset_in + 1
+        p 'too many requests, sleep ' + weight_time.to_s
+        sleep(weight_time.seconds)
+      end
+
+      loop do
+        friends = rest.friend_ids(user.id, {cursor: cursor})
+        friends.attrs[:ids].each do |u_id|
+          friend_ids << u_id
+        end
+        cursor = friends.attrs[:next_cursor]
+        break if cursor.zero?
+      rescue Twitter::Error::TooManyRequests => error
+        weight_time = error.rate_limit.reset_in + 1
+        p 'too many requests, sleep ' + weight_time.to_s
+        sleep(weight_time.seconds)
+      end
+
+      get_user_info(follower_ids)
+      get_user_info(friend_ids)
+
+      follower_ids.each do |from_id|
+        from_user = TweetUser.find(from_id)
+        Follow.find_or_create_by(from_user: from_user, to_user: user)
+      end
+      friend_ids.each do |to_id|
+        to_user = TweetUser.find(to_id)
+        follow = Follow.new(from_user: user, to_user: to_user)
+        Follow.find_or_create_by(from_user: user, to_user: to_user)
+      end
+
+      user.updated_at = DateTime.now
+      user.save!
+    end
+    p 'done'
+
+  end
+
+  def get_user_info(uid_list)
+    get_unknown_user_ids(uid_list).each_slice(100) do |uids|
+      begin
+        rest.users(uids).each(&method(:store_user))
+      rescue Twitter::Error::TooManyRequests => error
+        weight_time = error.rate_limit.reset_in + 1
+        p 'too many requests, sleep ' + weight_time.to_s
+        sleep(weight_time.seconds)
+      end
+    end
+  end
+
+  def get_unknown_user_ids(ids)
+    unknown_ids = Array.new
+    ids.each do |i|
+      begin
+        TweetUser.find(i)
+      rescue ActiveRecord::RecordNotFound
+        unknown_ids << i
+      end
+    end
+    unknown_ids
   end
 
   def count_tweet
@@ -55,8 +131,8 @@ module GetTweet::Tweet
 
 
   def reply
+    Rails.application.eager_load!
     loop do
-      Rails.application.eager_load!
       tweets = TweetText.where(reply_check: true).limit(100)
       if tweets.count.positive?
         tweets.each do |t|
@@ -194,7 +270,6 @@ module GetTweet::Tweet
       )
 
 
-
       if t.geo.present?
         p t.geo.coordinates[0], t.geo.coordinates[1], t.id
         factory = RGeo::Geographic.spherical_factory(srid: 4326)
@@ -241,7 +316,7 @@ module GetTweet::Tweet
     FileUtils.mkdir_p(path) unless FileTest.exist?(path)
     begin
       open(url) do |image|
-        File.open(path+"/"+filename, 'wb') do |f|
+        File.open(path + "/" + filename, 'wb') do |f|
           f.puts image.read
         end
       end
@@ -294,7 +369,6 @@ module GetTweet::Tweet
 
     api = Rails.application.credentials.twitter_api
 
-
     Twitter::Streaming::Client.new do |config|
       config.consumer_key = api[:consumer_key]
       config.consumer_secret = api[:consumer_secret]
@@ -305,14 +379,8 @@ module GetTweet::Tweet
 
   def rest
 
-    api = nil
+    api = Rails.application.credentials.twitter_api
 
-    if Rails.env.production?
-      api = Rails.application.credentials.twitter_api
-    end
-
-    api = Rails.application.credentials.twitter_api if Rails.env.test?
-    api = Rails.application.credentials.twitter_api if Rails.env.development?
     Twitter::REST::Client.new do |config|
       config.consumer_key = api[:consumer_key]
       config.consumer_secret = api[:consumer_secret]
