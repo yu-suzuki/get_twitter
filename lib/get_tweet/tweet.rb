@@ -122,17 +122,17 @@ module GetTweet::Tweet
         m.subdir = subdir
         download_image(m.url, subdir)
         m.downloaded = true
-        m.save
+        m.save!
         random = Random.new
         sleep(random.rand(2.0) * 0.1 + 0.4)
       end
     rescue Errno::ENETUNREACH
-      sleep(1.hour)
+      sleep(30.minutes)
     rescue Net::OpenTimeout
-      sleep(10.minutes)
+      sleep(5.minutes)
     rescue ActiveRecord::StatementInvalid
       p 'postgres error, reconnect'
-      sleep(1.minutes)
+      sleep(1.minute)
     rescue HTTP::ConnectionError
       p 'HTTP error, reconnect'
       sleep(1.minute)
@@ -236,7 +236,7 @@ module GetTweet::Tweet
 
   def download_image(url, dir)
     filename = File.basename(url)
-    path = "app/assets/images/#{dir}"
+    path = "/tank/data/twitter_images/#{dir}"
     FileUtils.mkdir_p(path) unless FileTest.exist?(path)
     begin
       open(url) do |image|
