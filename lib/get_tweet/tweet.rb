@@ -240,7 +240,7 @@ module GetTweet::Tweet
     FileUtils.mkdir_p(path) unless FileTest.exist?(path)
     begin
       open(url) do |image|
-        File.open(Rails.root.join('app', 'assets', 'images', dir, filename), 'wb') do |f|
+        File.open(path+"/"+filename, 'wb') do |f|
           f.puts image.read
         end
       end
