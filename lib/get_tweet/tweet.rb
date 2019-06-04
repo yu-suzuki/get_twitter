@@ -52,7 +52,7 @@ module GetTweet::Tweet
           from_user = TweetUser.find(from_id)
           delay.save_follow(from_user, user)
         rescue ActiveRecord::RecordNotFound
-          p 'skip id ' + from_id
+          p 'skip id ' + from_id.to_s
         end
 
       end
@@ -61,7 +61,7 @@ module GetTweet::Tweet
           to_user = TweetUser.find(to_id)
           delay.save_follow(user, to_user)
         rescue ActiveRecord::RecordNotFound
-          p 'skip id ' + to_id
+          p 'skip id ' + to_id.to_s
         end
 
       end
