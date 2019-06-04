@@ -71,6 +71,8 @@ module GetTweet::Tweet
     get_unknown_user_ids(uid_list).each_slice(100) do |uids|
       begin
         rest.users(uids).each(&method(:store_user))
+      rescue Twitter::Error::NotFound => error
+        p error
       rescue Twitter::Error::TooManyRequests => error
         weight_time = error.rate_limit.reset_in + 1
         p 'too many requests, sleep ' + weight_time.to_s
