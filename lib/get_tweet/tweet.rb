@@ -22,7 +22,7 @@ module GetTweet::Tweet
     Rails.application.eager_load!
     begin
       streaming.sample do |t|
-        p t if t.is_a?(Twitter::Streaming::StallWarning)
+        p t if t.is_a?(Twitter::Streaming::StallWarning) || t.is_a?(Twitter::Streaming::Event)
         delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
         delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
       end
