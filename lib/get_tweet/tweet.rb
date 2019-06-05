@@ -29,6 +29,9 @@ module GetTweet::Tweet
         weight_time = error.rate_limit.reset_in + 1
         p 'too many requests, sleep ' + weight_time.to_s
         sleep(weight_time.seconds)
+      rescue Twitter::Error::Unauthorized => error
+        p 'unauthorized'
+        break
       end
 
       loop do
@@ -42,6 +45,9 @@ module GetTweet::Tweet
         weight_time = error.rate_limit.reset_in + 1
         p 'too many requests, sleep ' + weight_time.to_s
         sleep(weight_time.seconds)
+      rescue Twitter::Error::Unauthorized => error
+        p 'unauthorized'
+        break
       end
 
       get_user_info(follower_ids)
