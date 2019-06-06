@@ -32,6 +32,9 @@ module GetTweet::Tweet
       rescue Twitter::Error::Unauthorized => error
         p 'unauthorized'
         break
+      rescue Twitter::Error::NotFound => error
+        p 'deleted'
+        break
       end
 
       loop do
@@ -47,6 +50,9 @@ module GetTweet::Tweet
         sleep(weight_time.seconds)
       rescue Twitter::Error::Unauthorized => error
         p 'unauthorized'
+        break
+      rescue Twitter::Error::NotFound => error
+        p 'deleted'
         break
       end
 
