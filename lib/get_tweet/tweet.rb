@@ -354,6 +354,9 @@ module GetTweet::Tweet
     rescue Net::ReadTimeout
       Rails.logger.info("Read Timeout")
       sleep(5.minutes)
+    rescue SocketError
+      sleep(30.seconds)
+      retry
     end
   end
 
