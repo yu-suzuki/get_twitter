@@ -132,8 +132,7 @@ module GetTweet::Tweet
         delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
       end
     rescue EOFError
-      p 'EOF error, reconnect'
-      sleep(1.minutes)
+      sleep(1.second)
       retry
     rescue ActiveRecord::StatementInvalid => e
       p 'postgres error, reconnect'
