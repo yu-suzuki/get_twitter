@@ -99,6 +99,8 @@ module GetTweet::Tweet
         weight_time = error.rate_limit.reset_in + 1
         p 'too many requests, sleep ' + weight_time.to_s
         sleep(weight_time.seconds)
+      rescue HTTP::ConnectionError
+        retry
       end
     end
   end
