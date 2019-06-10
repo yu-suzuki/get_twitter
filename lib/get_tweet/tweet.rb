@@ -132,8 +132,8 @@ module GetTweet::Tweet
     begin
       streaming.sample do |t|
         p t if t.is_a?(Twitter::Streaming::StallWarning) || t.is_a?(Twitter::Streaming::Event) || t.is_a?(Twitter::DirectMessage) || t.is_a?(Twitter::Streaming::FriendList)
-        store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-        check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+        delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+        delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
       end
     rescue EOFError
       sleep(1.second)
@@ -280,7 +280,7 @@ module GetTweet::Tweet
 
   def store_tweet(t, check)
     ActiveRecord::Base.connection_pool.with_connection do
-      store_user(t.user)
+      delay.store_user(t.user)
       reply_check = true if check && (t.reply? || t.retweet?)
       #p user.id
       tweet = TweetText.find_or_create_by(id: t.id,

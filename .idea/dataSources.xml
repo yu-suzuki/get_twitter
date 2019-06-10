@@ -11,5 +11,11 @@
         <property name="v$session.program" value="DataGrip" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="get_twitter_development@localhost" uuid="ed79e5db-67df-4908-b5ab-8c5e80266f87">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/get_twitter_development</jdbc-url>
+    </data-source>
   </component>
 </project>

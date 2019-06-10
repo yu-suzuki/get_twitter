@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_081127) do
+ActiveRecord::Schema.define(version: 2019_06_10_061721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 2019_06_04_081127) do
     t.boolean "reply", default: false, null: false
     t.geography "position", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.bigint "retweet_id"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.decimal "latitude"
     t.decimal "longitude"
     t.index ["created_at"], name: "index_tweet_texts_on_created_at"
