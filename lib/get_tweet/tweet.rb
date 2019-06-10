@@ -10,6 +10,10 @@ module GetTweet::Tweet
     count_tweet
   end
 
+  def update
+    rest.update(Time.now)
+  end
+
   def follower
     loop do
       user = TweetUser.order(:updated_at).first
@@ -70,7 +74,7 @@ module GetTweet::Tweet
       end
       friend_ids.each do |to_id|
         begin
-          to_user = TweetUser.find(to_id)
+          delay.to_user = TweetUser.find(to_id)
           delay.save_follow(user, to_user)
         rescue ActiveRecord::RecordNotFound
           p 'skip id ' + to_id.to_s
@@ -128,8 +132,8 @@ module GetTweet::Tweet
     begin
       streaming.sample do |t|
         p t if t.is_a?(Twitter::Streaming::StallWarning) || t.is_a?(Twitter::Streaming::Event) || t.is_a?(Twitter::DirectMessage) || t.is_a?(Twitter::Streaming::FriendList)
-        delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-        delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+        store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+        check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
       end
     rescue EOFError
       sleep(1.second)
@@ -276,9 +280,9 @@ module GetTweet::Tweet
 
   def store_tweet(t, check)
     ActiveRecord::Base.connection_pool.with_connection do
-      user = store_user(t.user)
+      store_user(t.user)
       reply_check = true if check && (t.reply? || t.retweet?)
-      #p t.reply?, t.retweet?, reply_check
+      #p user.id
       tweet = TweetText.find_or_create_by(id: t.id,
                                           text: t.full_text,
                                           favorite_count: t.favorite_count,
@@ -293,7 +297,7 @@ module GetTweet::Tweet
                                           reply: t.reply?,
                                           retweet: t.retweet?,
                                           retweet_id: t.retweeted_status.id,
-                                          tweet_user_id: user.id,
+                                          tweet_user_id: t.user.id,
                                           reply_check: reply_check
       )
 

@@ -24,4 +24,8 @@ namespace :get_tweet do
     GetTweet::Tweet.follower
   end
 
+  task update: :environment do
+    GetTweet::Tweet.update
+  end
+
 end
