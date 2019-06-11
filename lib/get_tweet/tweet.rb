@@ -333,8 +333,9 @@ module GetTweet::Tweet
 
 
       tweet
-    rescue ActiveRecord::NotNullViolation
+    rescue ActiveRecord::NotNullViolation => error
       p 'not null violation'
+      p error
     rescue ActiveRecord::RecordNotUnique
       p 'unique violation'
     ensure
