@@ -168,8 +168,8 @@ module GetTweet::Tweet
       tweets = TweetText.where(reply_check: true).limit(100)
       if tweets.count.positive?
         tweets.each do |t|
-          delay.store_tweet_with_parent(t.in_reply_to_status_id) if t.reply?
-          delay.store_tweet_with_parent(t.retweet_id) if t.retweet?
+          store_tweet_with_parent(t.in_reply_to_status_id) if t.reply?
+          store_tweet_with_parent(t.retweet_id) if t.retweet?
           t.reply_check = false
           t.save!
         rescue Twitter::Error::TooManyRequests => error
