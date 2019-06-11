@@ -298,6 +298,7 @@ module GetTweet::Tweet
                                           retweet: t.retweet?,
                                           retweet_id: t.retweeted_status.id,
                                           tweet_user_id: t.user.id,
+                                          user_id: t.user.id,
                                           reply_check: reply_check
       )
 
