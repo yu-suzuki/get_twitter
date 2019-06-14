@@ -74,7 +74,7 @@ module GetTweet::Tweet
       end
       friend_ids.each do |to_id|
         begin
-          delay.to_user = TweetUser.find(to_id)
+          to_user = TweetUser.find(to_id)
           delay.save_follow(user, to_user)
         rescue ActiveRecord::RecordNotFound
           p 'skip id ' + to_id.to_s
