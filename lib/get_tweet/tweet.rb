@@ -266,8 +266,12 @@ module GetTweet::Tweet
           store_tweet(t, false)
           store_tweet_with_parent(t.in_reply_to_status_id) unless t.in_reply_to_status_id.nil?
         end
+
+      rescue NameError
+        Rails.logger.info("Internal Server Error")
       rescue Twitter::Error::InternalServiceError
         Rails.logger.info("Internal Server Error")
+        break
       rescue Twitter::Error::Forbidden
         Rails.logger.info("Forbidden")
       rescue Twitter::Error::NotFound
@@ -360,9 +364,11 @@ module GetTweet::Tweet
       end
     rescue OpenURI::HTTPError
       Rails.logger.info("Target Image #{url} Not found")
+      retry
     rescue Net::ReadTimeout
       Rails.logger.info("Read Timeout")
       sleep(5.minutes)
+      retry
     rescue SocketError
       sleep(30.seconds)
       retry
