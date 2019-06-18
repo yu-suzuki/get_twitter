@@ -268,6 +268,8 @@ module GetTweet::Tweet
         end
       rescue Twitter::Error::InternalServiceError
         Rails.logger.info("Internal Server Error")
+      rescue Twitter::Error::Forbidden
+        Rails.logger.info("Forbidden")
       rescue Twitter::Error::NotFound
         Rails.logger.info("Target Tweet #{tweet_id} Not found")
       rescue Twitter::Error::Forbidden
