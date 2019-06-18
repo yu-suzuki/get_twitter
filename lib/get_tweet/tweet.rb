@@ -263,17 +263,17 @@ module GetTweet::Tweet
       begin
         t = rest.status(tweet_id)
         if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-          store_tweet(t, false)
-          store_tweet_with_parent(t.in_reply_to_status_id) unless t.in_reply_to_status_id.nil?
+        store_tweet(t, false)
+        store_tweet_with_parent(t.in_reply_to_status_id) unless t.in_reply_to_status_id.nil?
         end
-
+        
+      rescue Twitter::Error::Forbidden
+        Rails.logger.info("Forbidden")
       rescue NameError
         Rails.logger.info("Internal Server Error")
       rescue Twitter::Error::InternalServiceError
         Rails.logger.info("Internal Server Error")
-        continue
-      rescue Twitter::Error::Forbidden
-        Rails.logger.info("Forbidden")
+
       rescue Twitter::Error::NotFound
         Rails.logger.info("Target Tweet #{tweet_id} Not found")
       rescue Twitter::Error::Forbidden
