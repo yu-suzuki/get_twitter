@@ -266,6 +266,8 @@ module GetTweet::Tweet
           store_tweet(t, false)
           store_tweet_with_parent(t.in_reply_to_status_id) unless t.in_reply_to_status_id.nil?
         end
+      rescue NameError
+        Rails.logger.info("Internal Server Error/NameError")
       rescue Twitter::Error::InternalServiceError
         Rails.logger.info("Internal Server Error")
         retry
