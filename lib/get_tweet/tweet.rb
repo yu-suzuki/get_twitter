@@ -271,7 +271,7 @@ module GetTweet::Tweet
         Rails.logger.info("Internal Server Error")
       rescue Twitter::Error::InternalServiceError
         Rails.logger.info("Internal Server Error")
-        break
+        continue
       rescue Twitter::Error::Forbidden
         Rails.logger.info("Forbidden")
       rescue Twitter::Error::NotFound
