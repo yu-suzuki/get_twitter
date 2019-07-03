@@ -97,6 +97,9 @@ module GetTweet::Tweet
     get_unknown_user_ids(uid_list).each_slice(100) do |uids|
       begin
         rest.users(uids).each(&method(:store_user))
+      rescue Twitter::Error::InternalServerError => error
+        sleep(10.seconds)
+        retry
       rescue Twitter::Error::NotFound => error
         p error
       rescue Twitter::Error::TooManyRequests => error
