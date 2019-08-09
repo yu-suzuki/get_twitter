@@ -17,7 +17,7 @@ class SearchController < ApplicationController
     data = data.where(deleted: deleted) if deleted && data
     data = data.where(mention: mention) if mention && data
     data = data.where(retweet: retweet) if retweet && data
-    data = data.order(created_at: :desc).limit(1000)
+    data = data.order(id: :desc).limit(1000)
     render json: {status: 'SUCCESS', count: data.size, query: query,  data: data}
   end
 
