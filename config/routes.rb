@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/search'
   resources :parameters
   get 'home/index'
   root to: 'home#index'
