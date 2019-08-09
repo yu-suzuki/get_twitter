@@ -6,6 +6,8 @@ class SearchController < ApplicationController
     mention = search_params[:mention]
     retweet = search_params[:retweet]
     reply = search_params[:reply]
+    id_max = search_params[:id_max]
+    id_min = search_params[:id_min]
     data = nil
     query = ""
     keywords.split(',').each do |k|
@@ -13,18 +15,27 @@ class SearchController < ApplicationController
       query << " OR "
     end
 
-    query.slice!(-4,4)
-    data = TweetText.where("text &@~ ?", query)
+    query.slice!(-4, 4)
+    data = TweetText.all
+    data = data.where("text &@~ ?", query)
     data = data.where(lang: lang) if lang && data
     data = data.where(deleted: deleted) if deleted && data
     data = data.where(mention: mention) if mention && data
     data = data.where(retweet: retweet) if retweet && data
     data = data.where(reply: reply) if reply && data
+    data = data.where("id > ?", id_min) if id_min && data
+    data = data.where("id < ?", id_max) if id_max && data
     data = data.order(id: :desc).limit(1000)
-    render json: {status: 'SUCCESS', count: data.size, query: query,  data: data}
+    if data.empty?
+      render json: {status: 'ERROR', message: 'Not found'}
+    else
+      render json: {status: 'SUCCESS', count: data.size, query: query,
+                    id_max: data.first.id, id_min: data.last.id, data: data}
+    end
+
   end
 
   def search_params
-    params.permit(:keyword, :lang, :deleted, :mention, :retweet, :reply)
+    params.permit(:keyword, :lang, :deleted, :mention, :retweet, :reply, :id_min, :id_max)
   end
 end
