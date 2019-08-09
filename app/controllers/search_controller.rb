@@ -25,6 +25,6 @@ class SearchController < ApplicationController
   end
 
   def search_params
-    params.require(:keyword).permit(:lang, :deleted, :mention, :retweet, :reply)
+    params.permit(:keyword, :lang, :deleted, :mention, :retweet, :reply)
   end
 end
