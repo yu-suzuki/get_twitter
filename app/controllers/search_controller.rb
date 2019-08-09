@@ -11,6 +11,7 @@ class SearchController < ApplicationController
       query << k
       query << " OR "
     end
+
     query.slice!(-4,4)
     data = TweetText.where("text &@~ ?", query)
     data = data.where(lang: lang) if lang && data
