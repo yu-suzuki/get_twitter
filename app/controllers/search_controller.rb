@@ -1,10 +1,11 @@
 class SearchController < ApplicationController
   def search
-    keywords = params[:keyword]
-    lang = params[:lang]
-    deleted = params[:deleted]
-    mention = params[:mention]
-    retweet = params[:retweet]
+    keywords = search_params[:keyword]
+    lang = search_params[:lang]
+    deleted = search_params[:deleted]
+    mention = search_params[:mention]
+    retweet = search_params[:retweet]
+    reply = search_params[:reply]
     data = nil
     query = ""
     keywords.split(',').each do |k|
@@ -18,11 +19,12 @@ class SearchController < ApplicationController
     data = data.where(deleted: deleted) if deleted && data
     data = data.where(mention: mention) if mention && data
     data = data.where(retweet: retweet) if retweet && data
+    data = data.where(reply: reply) if reply && data
     data = data.order(id: :desc).limit(1000)
     render json: {status: 'SUCCESS', count: data.size, query: query,  data: data}
   end
 
   def search_params
-    params.require(:keyword).permit(:lang, :deleted, :mention, :retweet)
+    params.require(:keyword).permit(:lang, :deleted, :mention, :retweet, :reply)
   end
 end
