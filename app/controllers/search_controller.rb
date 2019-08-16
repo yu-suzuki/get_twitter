@@ -25,7 +25,7 @@ class SearchController < ApplicationController
     data = data.where(reply: reply) if reply && data
     data = data.where("id > ?", id_min) if id_min && data
     data = data.where("id < ?", id_max) if id_max && data
-    data = data.order(id: :desc).limit(1000)
+    data = data.order(id: :desc).limit(100)
     if data.empty?
       render json: {status: 'ERROR', message: 'Not found'}
     else
