@@ -3,12 +3,11 @@ class SearchController < ApplicationController
     keywords = search_params[:keyword]
     lang = search_params[:lang]
     deleted = search_params[:deleted]
-    mention = search_params[:mention]
     retweet = search_params[:retweet]
     reply = search_params[:reply]
     id_max = search_params[:id_max]
     id_min = search_params[:id_min]
-    data = nil
+
     query = ""
 
     begin
