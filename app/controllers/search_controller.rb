@@ -22,7 +22,6 @@ class SearchController < ApplicationController
       data = data.where("text &@~ ?", query)
       data = data.where(lang: lang) if lang && data
       data = data.where(deleted: deleted) if deleted && data
-      data = data.where(mention: mention) if mention && data
       data = data.where(retweet: retweet) if retweet && data
       data = data.where(reply: reply) if reply && data
       data = data.where("id > ?", id_min) if id_min && data
@@ -41,6 +40,6 @@ class SearchController < ApplicationController
   end
 
   def search_params
-    params.permit(:keyword, :lang, :deleted, :mention, :retweet, :reply, :id_min, :id_max)
+    params.permit(:keyword, :lang, :deleted, :retweet, :reply, :id_min, :id_max)
   end
 end
