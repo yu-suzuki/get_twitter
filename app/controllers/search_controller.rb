@@ -14,7 +14,7 @@ class SearchController < ApplicationController
     begin
       keywords.split(',').each do |k|
         query << k
-        query << " OR "
+        query << " AND "
       end
 
       query.slice!(-4, 4)
