@@ -133,10 +133,16 @@ module GetTweet::Tweet
   def batch
     Rails.application.eager_load!
     begin
+      tweets = Set.new
       streaming.sample do |t|
         p t if t.is_a?(Twitter::Streaming::StallWarning) || t.is_a?(Twitter::Streaming::Event) || t.is_a?(Twitter::DirectMessage) || t.is_a?(Twitter::Streaming::FriendList)
-        delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+        tweets.add(t) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+        #delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
         delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+        if tweets.size > 1000
+          delay.store_tweets(tweets)
+          tweets = Set.new
+        end
       end
     rescue EOFError
       sleep(1.second)
@@ -281,6 +287,12 @@ module GetTweet::Tweet
       rescue Twitter::Error::ServiceUnavailable
         Rails.logger.info('Twitter Service Unavailable.')
       end
+    end
+  end
+
+  def store_tweets(tweets)
+    tweets.each do |t|
+      store_tweet(t, true)
     end
   end
 
