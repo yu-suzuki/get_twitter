@@ -292,7 +292,7 @@ module GetTweet::Tweet
 
   def store_tweets(tweets)
     tweets.each do |t|
-      store_tweet(t, true)
+      delay.store_tweet(t, true)
     end
   end
 
