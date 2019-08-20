@@ -134,14 +134,20 @@ module GetTweet::Tweet
     Rails.application.eager_load!
     begin
       tweets = Set.new
+      checks = Set.new
       streaming.sample do |t|
         p t if t.is_a?(Twitter::Streaming::StallWarning) || t.is_a?(Twitter::Streaming::Event) || t.is_a?(Twitter::DirectMessage) || t.is_a?(Twitter::Streaming::FriendList)
         tweets.add(t) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
         #delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-        delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+        checks.add(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+        #delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
         if tweets.size > 1000
           delay.store_tweets(tweets)
           tweets = Set.new
+        end
+        if checks.size > 1000
+          delay.check_tweets(checks)
+          checks = Set.new
         end
       end
     rescue EOFError
@@ -257,6 +263,12 @@ module GetTweet::Tweet
     end
   end
 
+  def check_tweets(tweets)
+    tweets.each do |t|
+      check_tweet(t)
+    end
+  end
+
   def check_tweet(tweet)
     tweet = TweetText.find(tweet.id)
     tweet.deleted = true
@@ -292,7 +304,7 @@ module GetTweet::Tweet
 
   def store_tweets(tweets)
     tweets.each do |t|
-      delay.store_tweet(t, true)
+      store_tweet(t, true)
     end
   end
 
