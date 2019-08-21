@@ -386,6 +386,7 @@ module GetTweet::Tweet
       end
     rescue OpenURI::HTTPError
       Rails.logger.info("Target Image #{url} Not found")
+      p "Target Image #{url} Not found"
     rescue Net::ReadTimeout
       Rails.logger.info("Read Timeout")
       sleep(5.minutes)
