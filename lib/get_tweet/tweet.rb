@@ -58,6 +58,9 @@ module GetTweet::Tweet
       rescue Twitter::Error::NotFound => error
         p 'deleted'
         break
+      rescue Twitter::Error::ServiceUnavailable => error
+        p 'service unavailable, sleep 1min'
+        sleep(1.minute)
       end
 
       get_user_info(follower_ids)
@@ -133,22 +136,12 @@ module GetTweet::Tweet
   def batch
     Rails.application.eager_load!
     begin
-      tweets = Set.new
-      checks = Set.new
       streaming.sample do |t|
         p t if t.is_a?(Twitter::Streaming::StallWarning) || t.is_a?(Twitter::Streaming::Event) || t.is_a?(Twitter::DirectMessage) || t.is_a?(Twitter::Streaming::FriendList)
         tweets.add(t) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-        #delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+        delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
         checks.add(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
-        #delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
-        if tweets.size > 1000
-          delay.store_tweets(tweets)
-          tweets = Set.new
-        end
-        if checks.size > 1000
-          delay.check_tweets(checks)
-          checks = Set.new
-        end
+        delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
       end
     rescue EOFError
       sleep(1.second)

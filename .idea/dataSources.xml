@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="jdbc:oracle:thin:@localhost:1521/ORCLPDB1" uuid="8321362d-d827-4cff-99d6-b95730178832">
-      <driver-ref>oracle</driver-ref>
-      <synchronize>true</synchronize>
-      <auto-commit>false</auto-commit>
-      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
-      <jdbc-url>jdbc:oracle:thin:@localhost:1521/ORCLPDB1</jdbc-url>
-      <driver-properties>
-        <property name="v$session.program" value="DataGrip" />
-      </driver-properties>
-    </data-source>
     <data-source source="LOCAL" name="get_twitter_development@localhost" uuid="ed79e5db-67df-4908-b5ab-8c5e80266f87">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
