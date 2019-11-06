@@ -139,9 +139,9 @@ module GetTweet::Tweet
       streaming.sample do |t|
         p t if t.is_a?(Twitter::Streaming::StallWarning) || t.is_a?(Twitter::Streaming::Event) || t.is_a?(Twitter::DirectMessage) || t.is_a?(Twitter::Streaming::FriendList)
         #tweets.add(t) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
-        delay.store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
+        store_tweet(t, true) if t.is_a?(Twitter::Tweet) && (t.lang == 'ja' || t.lang == 'en')
         #checks.add(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
-        delay.check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
+        check_tweet(t) if t.is_a?(Twitter::Streaming::DeletedTweet)
       end
     rescue EOFError
       sleep(1.second)
